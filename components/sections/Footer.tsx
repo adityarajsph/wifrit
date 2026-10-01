@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Mail, Phone, MapPin, Linkedin, Twitter, Github, Instagram } from "lucide-react";
 
@@ -11,14 +12,14 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-6 gap-10 pb-12 border-b border-white/10">
           {/* Brand Info */}
           <div className="col-span-2">
-            <Link href="/" className="flex items-center gap-2.5 mb-4 group" aria-label="WIFRIT Home">
-              <span className="w-9 h-9 rounded-lg bg-brand flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform">
-                <span className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent" />
-                <span className="text-white font-display font-800 text-base">W</span>
-              </span>
-              <span className="font-display font-800 text-lg tracking-tight text-white">
-                WIFRIT
-              </span>
+            <Link href="/" className="flex items-center mb-5 group" aria-label="WIFRIT Home">
+              <Image
+                src="/wifrit_white.png"
+                alt="WIFRIT"
+                width={240}
+                height={100}
+                className="h-12 sm:h-14 md:h-16 w-auto object-contain transition-transform duration-200 group-hover:opacity-90"
+              />
             </Link>
             <p className="text-white/60 text-sm leading-relaxed max-w-xs">
               WIFRIT designs and builds software, web, mobile and cloud products

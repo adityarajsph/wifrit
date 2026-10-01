@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -46,14 +47,15 @@ export function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
         {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-2.5 group" aria-label="WIFRIT home">
-          <span className="w-9 h-9 rounded-lg bg-brand flex items-center justify-center relative overflow-hidden shadow-[0_4px_12px_rgba(37,99,235,0.35)] group-hover:scale-105 transition-transform">
-            <span className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent pointer-events-none" />
-            <span className="text-white font-display font-800 text-base relative">W</span>
-          </span>
-          <span className="font-display font-800 text-xl tracking-tight text-ink-950">
-            WIFRIT
-          </span>
+        <Link href="/" className="flex items-center group py-1" aria-label="WIFRIT home">
+          <Image
+            src="/wifrit_black.png"
+            alt="WIFRIT"
+            width={240}
+            height={100}
+            className="h-11 sm:h-12 md:h-14 w-auto object-contain transition-transform duration-200 group-hover:opacity-90"
+            priority
+          />
         </Link>
 
         {/* Desktop Navigation Links */}
