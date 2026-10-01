@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WIFRIT — Software &amp; Technology Solutions</title>
+<meta name="description" content="WIFRIT builds scalable software, web, mobile and cloud solutions for businesses that want to move faster and grow with confidence." />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            DEFAULT: '#2563EB',
+            50: '#EFF4FF',
+            100: '#DCE7FF',
+            600: '#2563EB',
+            700: '#1D4ED8',
+          },
+          ink: { 950: '#050816', 900: '#0B1120' },
+          slate2: '#64748B',
+          bg2: '#F8FAFC',
+          border2: '#E2E8F0',
+        },
+        fontFamily: {
+          display: ['"Plus Jakarta Sans"', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  :root{
+    --brand:#2563EB; --brand-700:#1D4ED8; --ink-950:#050816; --ink-900:#0B1120;
+    --slate:#64748B; --bg:#F8FAFC; --border:#E2E8F0;
+    --ease: cubic-bezier(.16,.8,.24,1);
+  }
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif; background:#fff; color:var(--ink-950); overflow-x:hidden;}
+  h1,h2,h3,h4,.font-display{font-family:'Plus Jakarta Sans',sans-serif;}
+  ::selection{background:var(--brand); color:#fff;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  .page{display:none;}
+  .page.active{display:block;}
+
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s var(--ease), transform .7s var(--ease);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  .reveal-stagger > * { opacity:0; transform:translateY(20px); transition:opacity .6s var(--ease), transform .6s var(--ease); }
+  .reveal-stagger.in > *{opacity:1; transform:translateY(0);}
+  .reveal-stagger.in > *:nth-child(1){transition-delay:.03s}
+  .reveal-stagger.in > *:nth-child(2){transition-delay:.09s}
+  .reveal-stagger.in > *:nth-child(3){transition-delay:.15s}
+  .reveal-stagger.in > *:nth-child(4){transition-delay:.21s}
+  .reveal-stagger.in > *:nth-child(5){transition-delay:.27s}
+  .reveal-stagger.in > *:nth-child(6){transition-delay:.33s}
+  .reveal-stagger.in > *:nth-child(7){transition-delay:.39s}
+  .reveal-stagger.in > *:nth-child(8){transition-delay:.45s}
+
+  .glow{ position:relative; }
+  .glow::before{
+    content:''; position:absolute; inset:-1px; border-radius:inherit;
+    background:radial-gradient(120px 80px at var(--mx,50%) var(--my,0%), rgba(37,99,235,.35), transparent 70%);
+    opacity:0; transition:opacity .35s ease; pointer-events:none;
+  }
+  .glow:hover::before{opacity:1;}
+
+  .grid-bg{
+    background-image:
+      linear-gradient(rgba(148,163,184,.14) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148,163,184,.14) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  .navbar{ transition: background-color .3s var(--ease), border-color .3s var(--ease), backdrop-filter .3s var(--ease); }
+  .navbar.scrolled{ background-color:rgba(255,255,255,.75); backdrop-filter:blur(14px); border-bottom:1px solid var(--border); }
+
+  .card-hover{ transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease); }
+  .card-hover:hover{ transform:translateY(-6px); box-shadow: 0 20px 40px -18px rgba(15,23,42,.18); border-color:#c7d6f5; }
+
+  .btn-primary{ background:var(--brand); color:#fff; transition: transform .25s var(--ease), background-color .25s var(--ease), box-shadow .25s var(--ease); box-shadow:0 8px 24px -10px rgba(37,99,235,.55); }
+  .btn-primary:hover{ background:var(--brand-700); transform:translateY(-2px); box-shadow:0 14px 30px -10px rgba(37,99,235,.65); }
+  .btn-secondary{ transition: all .25s var(--ease); }
+  .btn-secondary:hover{ background:var(--ink-950); color:#fff; border-color:var(--ink-950); }
+
+  .link-underline{ position:relative; }
+  .link-underline::after{ content:''; position:absolute; left:0; bottom:-4px; width:0; height:2px; background:var(--brand); transition:width .3s var(--ease); }
+  .link-underline:hover::after, .link-underline.active-link::after{ width:100%; }
+
+  .num-mark{ font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; color:transparent; -webkit-text-stroke:1.5px #cbd5e1; }
+
+  .noise-dark{ background: radial-gradient(1100px 500px at 15% -10%, rgba(37,99,235,.35), transparent 60%), radial-gradient(700px 400px at 100% 0%, rgba(37,99,235,.18), transparent 60%), var(--ink-950); }
+
+  .marquee-track{ animation: marquee 26s linear infinite; }
+  @keyframes marquee{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  input:focus, textarea:focus, select:focus, button:focus-visible, a:focus-visible{ outline:2px solid var(--brand); outline-offset:2px; }
+
+  .tab-btn.active{ background:var(--brand); color:#fff; }
+  .tab-btn.active .tab-count{ color:#fff; }
+
+  .skeleton{ background:linear-gradient(90deg,#eef2f7 25%,#f6f8fb 37%,#eef2f7 63%); background-size:400% 100%; animation:sk 1.4s ease infinite; }
+  @keyframes sk{ 0%{background-position:100% 50%} 100%{background-position:0 50%} }
+
+  .particle{ position:absolute; border-radius:999px; background:var(--brand); filter:blur(.5px); opacity:.55; animation: float 8s ease-in-out infinite; }
+  @keyframes float{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-18px) } }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- ============ NAVBAR ============ -->
+<header id="navbar" class="navbar fixed top-0 inset-x-0 z-50">
+  <nav class="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
+    <a href="#home" data-nav="home" class="flex items-center gap-2.5 group" aria-label="WIFRIT home">
+      <span class="w-9 h-9 rounded-lg bg-[var(--brand)] flex items-center justify-center relative overflow-hidden">
+        <span class="absolute inset-0 bg-gradient-to-br from-white/25 to-transparent"></span>
+        <span class="text-white font-display font-800 text-base relative">W</span>
+      </span>
+      <span class="font-display font-800 text-lg tracking-tight">WIFRIT</span>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-9 font-medium text-[15px] text-ink-950/80">
+      <a href="#home" data-nav="home" class="link-underline">Home</a>
+      <a href="#about" data-nav="about" class="link-underline">About</a>
+      <a href="#services" data-nav="services" class="link-underline">Services</a>
+      <a href="#portfolio" data-nav="portfolio" class="link-underline">Portfolio</a>
+      <a href="#blog" data-nav="blog" class="link-underline">Blog</a>
+      <a href="#contact" data-nav="contact" class="link-underline">Contact</a>
+    </div>
+
+    <div class="hidden lg:block">
+      <a href="#contact" data-nav="contact" class="btn-primary px-5 py-2.5 rounded-lg text-sm font-semibold">Let's Talk</a>
+    </div>
+
+    <button id="mobileToggle" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg border border-border2" aria-label="Toggle menu" aria-expanded="false">
+      <i data-lucide="menu" class="w-5 h-5"></i>
+    </button>
+  </nav>
+
+  <!-- mobile menu -->
+  <div id="mobileMenu" class="lg:hidden hidden bg-white border-t border-border2 px-5 py-4">
+    <div class="flex flex-col gap-1 font-medium text-[15px]">
+      <a href="#home" data-nav="home" class="mobile-link py-3 border-b border-border2/70">Home</a>
+      <a href="#about" data-nav="about" class="mobile-link py-3 border-b border-border2/70">About</a>
+      <a href="#services" data-nav="services" class="mobile-link py-3 border-b border-border2/70">Services</a>
+      <a href="#portfolio" data-nav="portfolio" class="mobile-link py-3 border-b border-border2/70">Portfolio</a>
+      <a href="#blog" data-nav="blog" class="mobile-link py-3 border-b border-border2/70">Blog</a>
+      <a href="#contact" data-nav="contact" class="mobile-link py-3">Contact</a>
+      <a href="#contact" data-nav="contact" class="btn-primary mt-3 px-5 py-3 rounded-lg text-sm font-semibold text-center">Let's Talk</a>
+    </div>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-ink-950 text-white">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 pt-16 pb-8">
+    <div class="grid grid-cols-2 md:grid-cols-6 gap-10 pb-12 border-b border-white/10">
+      <div class="col-span-2">
+        <a href="#home" data-nav="home" class="flex items-center gap-2.5 mb-4">
+          <span class="w-9 h-9 rounded-lg bg-[var(--brand)] flex items-center justify-center">
+            <span class="text-white font-display font-800 text-base">W</span>
+          </span>
+          <span class="font-display font-800 text-lg">WIFRIT</span>
+        </a>
+        <p class="text-white/60 text-sm leading-relaxed max-w-xs">WIFRIT designs and builds software, web, mobile and cloud products for businesses that need to move quickly without cutting corners.</p>
+        <div class="flex items-center gap-3 mt-6">
+          <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-[var(--brand)] flex items-center justify-center transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+          <a href="#" aria-label="Twitter / X" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-[var(--brand)] flex items-center justify-center transition-colors"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+          <a href="#" aria-label="GitHub" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-[var(--brand)] flex items-center justify-center transition-colors"><i data-lucide="github" class="w-4 h-4"></i></a>
+          <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-[var(--brand)] flex items-center justify-center transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-display font-700 text-sm mb-4 text-white/90">Quick Links</h4>
+        <ul class="space-y-2.5 text-sm text-white/60">
+          <li><a href="#home" data-nav="home" class="hover:text-white transition-colors">Home</a></li>
+          <li><a href="#about" data-nav="about" class="hover:text-white transition-colors">About</a></li>
+          <li><a href="#services" data-nav="services" class="hover:text-white transition-colors">Services</a></li>
+          <li><a href="#portfolio" data-nav="portfolio" class="hover:text-white transition-colors">Portfolio</a></li>
+          <li><a href="#blog" data-nav="blog" class="hover:text-white transition-colors">Blog</a></li>
+          <li><a href="#contact" data-nav="contact" class="hover:text-white transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-display font-700 text-sm mb-4 text-white/90">Services</h4>
+        <ul class="space-y-2.5 text-sm text-white/60">
+          <li><a href="#services" data-nav="services" class="hover:text-white transition-colors">Custom Software</a></li>
+          <li><a href="#services" data-nav="services" class="hover:text-white transition-colors">Web Development</a></li>
+          <li><a href="#services" data-nav="services" class="hover:text-white transition-colors">Mobile Apps</a></li>
+          <li><a href="#services" data-nav="services" class="hover:text-white transition-colors">UI/UX Design</a></li>
+          <li><a href="#services" data-nav="services" class="hover:text-white transition-colors">Cloud &amp; DevOps</a></li>
+          <li><a href="#services" data-nav="services" class="hover:text-white transition-colors">AI &amp; Automation</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-display font-700 text-sm mb-4 text-white/90">Resources</h4>
+        <ul class="space-y-2.5 text-sm text-white/60">
+          <li><a href="#blog" data-nav="blog" class="hover:text-white transition-colors">Blog</a></li>
+          <li><a href="#portfolio" data-nav="portfolio" class="hover:text-white transition-colors">Case Studies</a></li>
+          <li><a href="#about" data-nav="about" class="hover:text-white transition-colors">About Us</a></li>
+          <li><a href="#contact" data-nav="contact" class="hover:text-white transition-colors">Careers</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-display font-700 text-sm mb-4 text-white/90">Contact</h4>
+        <ul class="space-y-2.5 text-sm text-white/60">
+          <li class="flex items-start gap-2"><i data-lucide="mail" class="w-4 h-4 mt-0.5 shrink-0"></i>hello@wifrit.com</li>
+          <li class="flex items-start gap-2"><i data-lucide="phone" class="w-4 h-4 mt-0.5 shrink-0"></i>+1 (415) 555-0198</li>
+          <li class="flex items-start gap-2"><i data-lucide="map-pin" class="w-4 h-4 mt-0.5 shrink-0"></i>San Francisco, CA</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/45">
+      <p>© <span id="year"></span> WIFRIT Technologies. All rights reserved.</p>
+      <div class="flex items-center gap-6">
+        <a href="#" class="hover:text-white/80 transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-white/80 transition-colors">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ================= DATA ================= */
+const SERVICES = [
+  { icon:'code-2', title:'Custom Software Development', desc:'Bespoke systems engineered around how your business actually operates, not the other way around.', tags:['.NET','Node.js','Java','Python'] },
+  { icon:'globe', title:'Web Development', desc:'Fast, accessible, SEO-ready websites and web applications built on modern frameworks.', tags:['Next.js','React','TypeScript'] },
+  { icon:'smartphone', title:'Mobile App Development', desc:'Native and cross-platform apps that feel fast and native on every device.', tags:['React Native','Swift','Kotlin'] },
+  { icon:'pen-tool', title:'UI/UX Design', desc:'Interfaces shaped by research and usability testing, designed to convert and retain.', tags:['Figma','Design Systems'] },
+  { icon:'cloud', title:'Cloud & DevOps', desc:'Infrastructure, CI/CD and monitoring that scale quietly in the background.', tags:['AWS','Docker','Kubernetes'] },
+  { icon:'brain-circuit', title:'AI & Automation', desc:'Practical AI features and workflow automation that remove manual work, not add complexity.', tags:['LLMs','RPA','Data Pipelines'] },
+];
+
+const WHY = [
+  { icon:'target', title:'Business-Focused Solutions', desc:'Every technical decision is tied back to a business outcome you can measure.' },
+  { icon:'cpu', title:'Modern Technology', desc:'We build on current, well-supported tools rather than aging or experimental ones.' },
+  { icon:'layers', title:'Scalable Architecture', desc:'Systems designed to handle 10x growth without a rebuild.' },
+  { icon:'shield-check', title:'Security First', desc:'Security reviewed at every stage, not bolted on before launch.' },
+  { icon:'refresh-cw', title:'Agile Development', desc:'Short cycles, visible progress and room to adjust as priorities shift.' },
+  { icon:'handshake', title:'Long-Term Partnership', desc:'We stay involved after launch — support, iteration and scaling together.' },
+];
+
+const STATS = [
+  { value:10, suffix:'+', label:'Projects Delivered' },
+  { value:5, suffix:'+', label:'Technology Domains' },
+  { value:20, suffix:'+', label:'Professionals & Specialists' },
+  { value:100, suffix:'%', label:'Commitment' },
+];
+
+const PROJECTS = [
+  { title:'MedLink Patient Portal', cat:'Web', industry:'Healthcare', tech:'Next.js · Node.js · PostgreSQL', desc:'A secure patient portal for appointment booking, records access and telehealth intake.', result:'42% drop in front-desk call volume', color:'from-blue-500 to-cyan-400' },
+  { title:'Cartly Commerce Engine', cat:'E-commerce', industry:'E-commerce', tech:'React · Node.js · Redis', desc:'A headless commerce platform handling catalog, checkout and fulfillment for a multi-brand retailer.', result:'2.1x faster checkout completion', color:'from-indigo-500 to-blue-400' },
+  { title:'RoutePilot Logistics', cat:'Software', industry:'Logistics', tech:'Java · Spring Boot · AWS', desc:'Route optimization and fleet tracking software for a regional delivery network.', result:'18% reduction in fuel costs', color:'from-sky-500 to-blue-500' },
+  { title:'Voya Trip Planner', cat:'Mobile', industry:'Travel', tech:'React Native · Firebase', desc:'A cross-platform trip planning app with itinerary sharing and offline maps.', result:'4.8★ average app store rating', color:'from-blue-600 to-indigo-500' },
+  { title:'Lendra Credit Dashboard', cat:'FinTech', industry:'FinTech', tech:'Next.js · Python · PostgreSQL', desc:'A risk-scoring dashboard giving loan officers a real-time view of applicant credit signals.', result:'30% faster loan decisions', color:'from-cyan-500 to-blue-500' },
+  { title:'Classly LMS', cat:'UI/UX', industry:'Education', tech:'Figma · React · Node.js', desc:'A redesigned learning management system focused on instructor workflow and course clarity.', result:'55% increase in course completion', color:'from-blue-500 to-violet-400' },
+];
+
+const ARTICLES = [
+  { cat:'AI', title:'Where AI Actually Belongs in Your Product Roadmap', excerpt:'Most AI features fail not because the model is weak, but because the problem was never worth solving with AI.', author:'Rhea Malhotra', date:'Aug 12, 2026', read:'6 min', featured:true },
+  { cat:'Cloud', title:'A Practical Guide to Cutting Your AWS Bill by 30%', excerpt:'Right-sizing, reserved capacity and a few overlooked defaults that quietly inflate cloud spend.', author:'Daniel Cho', date:'Aug 3, 2026', read:'8 min' },
+  { cat:'Web Development', title:'Why We Moved Every New Project to the App Router', excerpt:'Server components changed how we think about data fetching, loading states and bundle size.', author:'Priya Nair', date:'Jul 27, 2026', read:'5 min' },
+  { cat:'UI/UX', title:'Designing Forms People Actually Finish', excerpt:'Field order, inline validation and error tone are worth more than any visual polish.', author:'Marcus Webb', date:'Jul 19, 2026', read:'4 min' },
+  { cat:'Business', title:'How to Brief a Software Vendor Without Wasting Six Weeks', excerpt:'The five things a scoping call needs before anyone writes an estimate.', author:'Rhea Malhotra', date:'Jul 8, 2026', read:'7 min' },
+  { cat:'Mobile', title:'Native vs Cross-Platform in 2026: A Decision Framework', excerpt:'It rarely comes down to performance anymore. Here is what it actually comes down to.', author:'Daniel Cho', date:'Jun 30, 2026', read:'6 min' },
+  { cat:'Technology', title:'The Case for Boring Technology', excerpt:"Novelty is a cost. Spend your team's innovation budget where it matters.", author:'Marcus Webb', date:'Jun 21, 2026', read:'5 min' },
+];
+
+const TESTIMONIALS = [
+  { name:'Amelia Voss', role:'VP of Product', company:'MedLink Health', quote:'WIFRIT rebuilt our patient portal in three months and it has held up under real hospital-scale traffic since day one.', initials:'AV' },
+  { name:'Jordan Park', role:'Founder & CEO', company:'Cartly', quote:'They pushed back on scope when it mattered and shipped faster than any agency we had used before.', initials:'JP' },
+  { name:'Sofia Ricci', role:'Head of Engineering', company:'RoutePilot', quote:'The handover documentation alone saved our internal team weeks of ramp-up time.', initials:'SR' },
+];
+
+const PROCESS = [
+  { n:'01', t:'Discover', d:'We learn your business, users and constraints before proposing a single line of code.' },
+  { n:'02', t:'Strategize', d:'We define scope, architecture and success metrics everyone agrees on upfront.' },
+  { n:'03', t:'Design', d:'Wireframes and prototypes are tested against real usage before development starts.' },
+  { n:'04', t:'Develop', d:'Work ships in short, visible sprints with a working build at every checkpoint.' },
+  { n:'05', t:'Test', d:'Automated and manual QA across devices, edge cases and performance benchmarks.' },
+  { n:'06', t:'Launch', d:'A controlled rollout with monitoring in place from the first minute live.' },
+  { n:'07', t:'Scale', d:'We stay on to optimize, extend and support the product as it grows.' },
+];
+
+const VALUES = [
+  { icon:'lightbulb', t:'Innovation', d:'We evaluate new tools constantly, but only ship what earns its place.' },
+  { icon:'shield', t:'Integrity', d:'Honest estimates, honest timelines, and honest news when something slips.' },
+  { icon:'gem', t:'Excellence', d:'Code review, testing and documentation are never the first thing cut.' },
+  { icon:'users', t:'Collaboration', d:'Your team and ours work from the same board, not separate silos.' },
+  { icon:'flag', t:'Ownership', d:'Every engineer treats the product like something they would maintain themselves.' },
+  { icon:'trophy', t:'Customer Success', d:'A launch is the midpoint of the relationship, not the end of it.' },
+];
+
+const TECH = {
+  Frontend:['React','Next.js','HTML','CSS','JavaScript','TypeScript'],
+  Backend:['Node.js','Express','Java','Spring Boot','Python'],
+  Database:['MongoDB','PostgreSQL','MySQL','Redis'],
+  Cloud:['AWS','Docker','CI/CD','Cloud Infrastructure'],
+};
+
+const SERVICE_DETAILS = [
+  { icon:'code-2', title:'Custom Software Development', desc:'Software built around your workflows and data, not the limitations of an off-the-shelf tool.',
+    caps:['Requirements & systems analysis','Legacy system modernization','Internal tooling & dashboards'], tech:'Node.js, Python, Java, PostgreSQL', benefit:'Fewer manual workarounds, systems that fit how your team actually works.' },
+  { icon:'globe', title:'Web Development', desc:'Modern, fast, responsive and SEO-friendly websites and web applications.',
+    caps:['Marketing sites & web apps','E-commerce platforms','Performance & SEO optimization'], tech:'Next.js, React, TypeScript, Tailwind CSS', benefit:'Sites that load fast, rank well and convert visitors into customers.' },
+  { icon:'smartphone', title:'Mobile App Development', desc:'Native and cross-platform mobile experiences that feel built for the device.',
+    caps:['iOS & Android native apps','Cross-platform apps','App store launch & maintenance'], tech:'React Native, Swift, Kotlin', benefit:'One codebase, two platforms, and an app that still feels native.' },
+  { icon:'pen-tool', title:'UI/UX Design', desc:'User-centered interfaces focused on usability, aesthetics and conversion.',
+    caps:['User research & testing','Wireframes & prototypes','Design systems'], tech:'Figma, Framer', benefit:'Interfaces people navigate without instructions.' },
+  { icon:'cloud', title:'Cloud & DevOps', desc:'Cloud infrastructure, deployments, CI/CD, monitoring and scalability.',
+    caps:['Infrastructure as code','CI/CD pipelines','Monitoring & alerting'], tech:'AWS, Docker, Kubernetes, Terraform', benefit:'Deployments that happen daily, not quarterly, without outages.' },
+  { icon:'brain-circuit', title:'AI & Automation', desc:'AI-powered workflows, intelligent automation and modern AI integrations.',
+    caps:['LLM-powered features','Workflow automation','Data pipelines'], tech:'OpenAI/Anthropic APIs, Python, LangChain', benefit:'Hours of manual work removed from repeatable processes.' },
+  { icon:'plug-zap', title:'API & Backend Development', desc:'Secure, scalable backend systems and API architecture.',
+    caps:['REST & GraphQL APIs','Authentication & authorization','Third-party integrations'], tech:'Node.js, Express, PostgreSQL, Redis', benefit:'A backend that scales with usage instead of falling over at peak load.' },
+  { icon:'life-buoy', title:'Maintenance & Support', desc:'Continuous improvements, monitoring, optimization and technical support.',
+    caps:['SLA-backed support', '24/7 monitoring', 'Ongoing performance tuning'], tech:'Datadog, Sentry, PagerDuty', benefit:'Problems get caught before your customers notice them.' },
+];
+
+const FAQS = [
+  { q:'How long does a typical project take?', a:'Most web and software projects take 8-16 weeks from kickoff to launch, depending on scope. We give you a specific timeline after the discovery phase, not before.' },
+  { q:'Do you work with startups or only enterprises?', a:'Both. Our process scales down for a lean MVP and up for enterprise systems with compliance and integration requirements.' },
+  { q:'What does your pricing look like?', a:'We quote fixed-price for well-defined scopes and time-and-materials for evolving products. You will always see the number before work begins.' },
+  { q:'Can you take over an existing codebase?', a:'Yes. We regularly inherit projects from other agencies or in-house teams and start with a codebase audit before making changes.' },
+  { q:'Do you offer support after launch?', a:'Every project includes a support window post-launch, with ongoing retainers available for ongoing maintenance and feature work.' },
+];
+
+/* ================= HELPERS ================= */
+function icon(name, cls='w-5 h-5'){ return `<i data-lucide="${name}" class="${cls}"></i>`; }
+
+/* ================= PAGE TEMPLATES ================= */
+
+function heroVisual(){
+  // signature element: animated architecture / network diagram
+  return `
+  <div class="relative w-full aspect-square max-w-md mx-auto">
+    <div class="absolute inset-0 rounded-3xl grid-bg opacity-60"></div>
+    <svg viewBox="0 0 400 400" class="absolute inset-0 w-full h-full">
+      <defs>
+        <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#2563EB" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#2563EB" stop-opacity="0.05"/>
+        </linearGradient>
+      </defs>
+      <g stroke="url(#lineGrad)" stroke-width="1.4" fill="none">
+        <path d="M80,120 L200,80 L320,140"/>
+        <path d="M80,120 L120,260"/>
+        <path d="M200,80 L200,200"/>
+        <path d="M320,140 L280,280"/>
+        <path d="M120,260 L200,200 L280,280"/>
+        <path d="M200,200 L200,320"/>
+        <path d="M120,260 L60,340"/>
+        <path d="M280,280 L340,340"/>
+      </g>
+      <g>
+        <circle cx="80" cy="120" r="6" fill="#2563EB"/>
+        <circle cx="200" cy="80" r="8" fill="#2563EB"/>
+        <circle cx="320" cy="140" r="6" fill="#2563EB"/>
+        <circle cx="200" cy="200" r="10" fill="#1D4ED8"/>
+        <circle cx="120" cy="260" r="6" fill="#2563EB"/>
+        <circle cx="280" cy="280" r="6" fill="#2563EB"/>
+        <circle cx="200" cy="320" r="7" fill="#2563EB"/>
+        <circle cx="60" cy="340" r="4" fill="#93C5FD"/>
+        <circle cx="340" cy="340" r="4" fill="#93C5FD"/>
+      </g>
+    </svg>
+    <div class="particle w-2 h-2" style="top:18%; left:22%; animation-delay:0s;"></div>
+    <div class="particle w-1.5 h-1.5" style="top:60%; left:75%; animation-delay:1.4s;"></div>
+    <div class="particle w-2.5 h-2.5" style="top:75%; left:30%; animation-delay:2.6s;"></div>
+    <div class="particle w-1.5 h-1.5" style="top:35%; left:65%; animation-delay:.8s;"></div>
+    <div class="absolute -bottom-4 -right-4 sm:bottom-2 sm:right-2 bg-white rounded-2xl shadow-xl border border-border2 px-4 py-3 flex items-center gap-3">
+      <div class="w-9 h-9 rounded-lg bg-brand-50 flex items-center justify-center text-brand-600">${icon('check-circle-2','w-5 h-5 text-brand')}</div>
+      <div class="text-left">
+        <p class="text-xs text-slate2">Build status</p>
+        <p class="text-sm font-semibold">Deployed successfully</p>
+      </div>
+    </div>
+    <div class="absolute -top-4 -left-4 sm:top-2 sm:left-2 bg-white rounded-2xl shadow-xl border border-border2 px-4 py-3">
+      <p class="text-xs text-slate2 mb-1">Uptime</p>
+      <p class="text-lg font-display font-800 text-brand-600">99.98%</p>
+    </div>
+  </div>`;
+}
+
+function pageHome(){
+  return `
+  <!-- HERO -->
+  <section class="relative pt-40 pb-24 grid-bg">
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-white/70 to-white pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 relative grid lg:grid-cols-2 gap-16 items-center">
+      <div class="reveal">
+        <span class="inline-flex items-center gap-2 text-xs font-semibold text-brand-600 bg-brand-50 border border-brand-100 rounded-full px-3 py-1.5 mb-6">
+          ${icon('sparkles','w-3.5 h-3.5')} Software &amp; Technology Partner
+        </span>
+        <h1 class="font-display font-800 text-[2.75rem] sm:text-6xl leading-[1.05] tracking-tight mb-6">Build. Innovate. <span class="text-brand-600">Transform.</span></h1>
+        <p class="text-lg text-slate2 leading-relaxed max-w-lg mb-8">We build scalable digital solutions that help businesses move faster, work smarter, and grow with confidence.</p>
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="#contact" data-nav="contact" class="btn-primary px-6 py-3.5 rounded-lg font-semibold text-sm">Start a Project</a>
+          <a href="#portfolio" data-nav="portfolio" class="btn-secondary border border-border2 px-6 py-3.5 rounded-lg font-semibold text-sm flex items-center gap-2">Explore Our Work ${icon('arrow-right','w-4 h-4')}</a>
+        </div>
+      </div>
+      <div class="reveal">${heroVisual()}</div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="py-14 border-y border-border2 bg-bg2 overflow-hidden">
+    <p class="text-center text-sm text-slate2 mb-8">Trusted by businesses to build what's next.</p>
+    <div class="relative">
+      <div class="flex gap-16 marquee-track w-max grayscale opacity-60">
+        ${Array(2).fill(['NORTHPEAK','VELORA','ASTRAL','BRIGHTLANE','KESTREL','FARFIELD','GRANDVIEW'].map(n=>`<span class="font-display font-700 text-xl text-ink-950/70 whitespace-nowrap">${n}</span>`).join('')).join('')}
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="py-24 max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-2xl mb-14 reveal">
+      <span class="text-brand-600 text-sm font-semibold">What We Do</span>
+      <h2 class="font-display font-800 text-3xl sm:text-4xl tracking-tight mt-2">Technology Solutions Built for Growth</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal-stagger">
+      ${SERVICES.map(s=>`
+        <div class="glow card-hover group border border-border2 rounded-2xl p-7 bg-white cursor-pointer" onclick="navigate('services')">
+          <div class="w-11 h-11 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600 mb-5">${icon(s.icon,'w-5 h-5')}</div>
+          <h3 class="font-display font-700 text-lg mb-2">${s.title}</h3>
+          <p class="text-sm text-slate2 leading-relaxed mb-5">${s.desc}</p>
+          <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600">Learn more ${icon('arrow-right','w-4 h-4 transition-transform group-hover:translate-x-1')}</span>
+        </div>`).join('')}
+    </div>
+  </section>
+
+  <!-- WHY WIFRIT -->
+  <section class="py-24 bg-bg2 border-y border-border2">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="max-w-2xl mb-14 reveal">
+        <span class="text-brand-600 text-sm font-semibold">Why WIFRIT</span>
+        <h2 class="font-display font-800 text-3xl sm:text-4xl tracking-tight mt-2">A Technology Partner That Thinks Like an Owner</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 reveal-stagger">
+        ${WHY.map(w=>`
+          <div class="flex gap-4">
+            <div class="w-11 h-11 shrink-0 rounded-xl bg-white border border-border2 flex items-center justify-center text-brand-600">${icon(w.icon,'w-5 h-5')}</div>
+            <div>
+              <h3 class="font-display font-700 text-base mb-1.5">${w.title}</h3>
+              <p class="text-sm text-slate2 leading-relaxed">${w.desc}</p>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="noise-dark text-white py-20">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 grid grid-cols-2 lg:grid-cols-4 gap-10 stats-row reveal-stagger">
+      ${STATS.map(s=>`
+        <div class="text-center lg:text-left">
+          <p class="font-display font-800 text-4xl sm:text-5xl text-brand-100 counter" data-target="${s.value}" data-suffix="${s.suffix}">0${s.suffix}</p>
+          <p class="text-white/60 text-sm mt-2">${s.label}</p>
+        </div>`).join('')}
+    </div>
+  </section>
+
+  <!-- PORTFOLIO PREVIEW -->
+  <section class="py-24 max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-14 reveal">
+      <div class="max-w-xl">
+        <span class="text-brand-600 text-sm font-semibold">Selected Work</span>
+        <h2 class="font-display font-800 text-3xl sm:text-4xl tracking-tight mt-2">Projects That Moved the Numbers</h2>
+      </div>
+      <a href="#portfolio" data-nav="portfolio" class="btn-secondary border border-border2 px-5 py-2.5 rounded-lg text-sm font-semibold flex items-center gap-2 shrink-0">View All Projects ${icon('arrow-right','w-4 h-4')}</a>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 reveal-stagger">
+      ${PROJECTS.slice(0,3).map(p=>`
+        <div class="card-hover border border-border2 rounded-2xl overflow-hidden bg-white cursor-pointer" onclick="navigate('portfolio')">
+          <div class="h-44 bg-gradient-to-br ${p.color} relative flex items-end p-5">
+            <span class="text-white/90 text-xs font-semibold bg-black/20 px-2.5 py-1 rounded-full">${p.industry}</span>
+          </div>
+          <div class="p-6">
+            <p class="text-xs font-semibold text-brand-600 mb-1.5">${p.cat}</p>
+            <h3 class="font-display font-700 text-lg mb-2">${p.title}</h3>
+            <p class="text-sm text-slate2 leading-relaxed mb-4">${p.desc}</p>
+            <span class="inline-flex items-center gap-1.5 text-sm font-semibold">View Case Study ${icon('arrow-right','w-4 h-4')}</span>
+          </div>
+        </div>`).join('')}
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="py-24 bg-bg2 border-y border-border2">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="max-w-2xl mb-16 reveal">
+        <span class="text-brand-600 text-sm font-semibold">Our Process</span>
+        <h2 class="font-display font-800 text-3xl sm:text-4xl tracking-tight mt-2">How We Turn Ideas Into Digital Products</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 reveal-stagger">
+        ${PROCESS.map((p,i)=>`
+          <div class="relative pl-1">
+            <span class="num-mark text-4xl block mb-3">${p.n}</span>
+            <h3 class="font-display font-700 text-base mb-1.5">${p.t}</h3>
+            <p class="text-sm text-slate2 leading-relaxed">${p.d}</p>
+          </div>`).join('')}
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="py-24 max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-2xl mb-14 reveal">
+      <span class="text-brand-600 text-sm font-semibold">Client Feedback</span>
+      <h2 class="font-display font-800 text-3xl sm:text-4xl tracking-tight mt-2">What Our Partners Say</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 reveal-stagger">
+      ${TESTIMONIALS.map(t=>`
+        <div class="border border-border2 rounded-2xl p-7 bg-white">
+          ${icon('quote','w-7 h-7 text-brand-100 mb-4')}
+          <p class="text-sm leading-relaxed text-ink-950/85 mb-6">"${t.quote}"</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-brand-50 text-brand-600 font-display font-700 text-sm flex items-center justify-center">${t.initials}</div>
+            <div>
+              <p class="font-semibold text-sm">${t.name}</p>
+              <p class="text-xs text-slate2">${t.role}, ${t.company}</p>
+            </div>
+          </div>
+        </div>`).join('')}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="max-w-7xl mx-auto px-5 sm:px-8 pb-24">
+    <div class="noise-dark rounded-3xl px-8 sm:px-16 py-16 text-center text-white reveal">
+      <h2 class="font-display font-800 text-3xl sm:text-4xl tracking-tight mb-4">Have an idea? Let's build it together.</h2>
+      <p class="text-white/60 max-w-xl mx-auto mb-8">Tell us what you're building and we'll help turn your idea into a scalable digital product.</p>
+      <a href="#contact" data-nav="contact" class="btn-primary inline-block px-7 py-3.5 rounded-lg font-semibold text-sm">Let's Talk</a>
+    </div>
+  </section>
+  `;
+}
+
+function pageAbout(){
+  return `
+  <section class="relative pt-40 pb-20 grid-bg">
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-white/70 to-white pointer-events-none"></div>
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 relative text-center reveal">
+      <span class="inline-flex items-center gap-2 text-xs font-semibold text-brand-600 bg-brand-50 border border-brand-100 rounded-full px-3 py-1.5 mb-6">About WIFRIT</span>
+      <h1 class="font-display font-800 text-4xl sm:text-5xl tracking-tight leading-tight">Technology That Turns Vision Into Reality</h1>
+    </div>
+  </section>
+
+  <section class="max-w-5xl mx-auto px-5 sm:px-8 py-16 grid md:grid-cols-2 gap-12 items-start reveal">
+    <div>
+      <span class="text-brand-600 text-sm font-semibold">Our Story</span>
+      <h2 class="font-display font-800 text-3xl tracking-tight mt-2 mb-5">Started by engineers who were tired of rebuilding the same broken process.</h2>
+    </div>
+    <div class="space-y-4 text-slate2 leading-relaxed">
+      <p>WIFRIT began as a small team of engineers and designers who kept encountering the same problem at different companies: software that technically worked, but never quite matched how the business actually ran.</p>
+      <p>We built WIFRIT to close that gap. Every engagement starts with understanding the workflow before touching a design tool or a line of code, because a well-built feature nobody needed is still a failed project.</p>
+      <p>Today we work across healthcare, fintech, logistics, travel and education, building software, web, mobile and cloud products for teams that need a partner who ships and stays.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-5 sm:px-8 pb-16 grid sm:grid-cols-2 gap-6 reveal-stagger">
+    <div class="border border-border2 rounded-2xl p-8 bg-bg2">
+      <div class="w-11 h-11 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600 mb-5">${icon('crosshair')}</div>
+      <h3 class="font-display font-700 text-xl mb-2">Our Mission</h3>
+      <p class="text-slate2 leading-relaxed text-sm">Use technology to simplify complex business challenges and create digital products that deliver measurable value.</p>
+    </div>
+    <div class="border border-border2 rounded-2xl p-8 bg-bg2">
+      <div class="w-11 h-11 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600 mb-5">${icon('telescope')}</div>
+      <h3 class="font-display font-700 text-xl mb-2">Our Vision</h3>
+      <p class="text-slate2 leading-relaxed text-sm">Become a trusted technology partner for businesses building the future.</p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-bg2 border-y border-border2">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="max-w-2xl mb-12 reveal">
+        <span class="text-brand-600 text-sm font-semibold">What We Stand For</span>
+        <h2 class="font-display font-800 text-3xl sm:text-4xl tracking-tight mt-2">Core Values</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal-stagger">
+        ${VALUES.map(v=>`
+          <div class="card-hover border border-border2 rounded-2xl p-7 bg-white">
+            <div class="w-11 h-11 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600 mb-5">${icon(v.icon)}</div>
+            <h3 class="font-display font-700 text-lg mb-2">${v.t}</h3>
+            <p class="text-sm text-slate2 leading-relaxed">${v.d}</p>
+          </div>`).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-5 sm:px-8 py-20">
+    <div class="max-w-2xl mb-12 reveal">
+      <span class="text-brand-600 text-sm font-semibold">Technology Expertise</span>
+      <h2 class="font-display font-800 text-3xl sm:text-4xl tracking-tight mt-2">Tools We Build With</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 reveal-stagger">
+      ${Object.entries(TECH).map(([group,items])=>`
+        <div class="border border-border2 rounded-2xl p-6">
+          <h3 class="font-display font-700 text-sm text-brand-600 mb-4">${group}</h3>
+          <ul class="space-y-2">
+            ${items.map(t=>`<li class="text-sm text-ink-950/80 flex items-center gap-2">${icon('dot','w-4 h-4 text-brand')}${t}</li>`).join('')}
+          </ul>
+        </div>`).join('')}
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-5 sm:px-8 pb-24">
+    <div class="noise-dark rounded-3xl px-8 sm:px-16 py-16 text-center text-white reveal">
+      <h2 class="font-display font-800 text-3xl sm:text-4xl tracking-tight mb-8">Let's Build Something Exceptional.</h2>
+      <a href="#contact" data-nav="contact" class="btn-primary inline-block px-7 py-3.5 rounded-lg font-semibold text-sm">Start a Conversation</a>
+    </div>
+  </section>
+  `;
+}
+
+function pageServices(){
+  return `
+  <section class="relative pt-40 pb-20 grid-bg">
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-white/70 to-white pointer-events-none"></div>
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 relative text-center reveal">
+      <span class="inline-flex items-center gap-2 text-xs font-semibold text-brand-600 bg-brand-50 border border-brand-100 rounded-full px-3 py-1.5 mb-6">Services</span>
+      <h1 class="font-display font-800 text-4xl sm:text-5xl tracking-tight leading-tight">Technology Services Designed Around Your Business</h1>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-5 sm:px-8 py-16 space-y-6">
+    ${SERVICE_DETAILS.map((s,i)=>`
+      <div class="reveal grid lg:grid-cols-12 gap-8 border border-border2 rounded-2xl p-8 sm:p-10 ${i%2===0?'bg-white':'bg-bg2'}">
+        <div class="lg:col-span-4">
+          <div class="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600 mb-5">${icon(s.icon,'w-6 h-6')}</div>
+          <h3 class="font-display font-700 text-2xl mb-3">${s.title}</h3>
+          <p class="text-slate2 leading-relaxed text-sm">${s.desc}</p>
+          <a href="#contact" data-nav="contact" class="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 mt-5">Get a quote ${icon('arrow-right','w-4 h-4')}</a>
+        </div>
+        <div class="lg:col-span-4">
+          <p class="text-xs font-semibold text-slate2 uppercase tracking-wide mb-3">Key Capabilities</p>
+          <ul class="space-y-2.5">
+            ${s.caps.map(c=>`<li class="text-sm flex items-start gap-2"><span class="mt-0.5">${icon('check','w-4 h-4 text-brand-600 shrink-0')}</span>${c}</li>`).join('')}
+          </ul>
+        </div>
+        <div class="lg:col-span-4">
+          <p class="text-xs font-semibold text-slate2 uppercase tracking-wide mb-3">Technologies</p>
+          <p class="text-sm text-ink-950/80 mb-5">${s.tech}</p>
+          <p class="text-xs font-semibold text-slate2 uppercase tracking-wide mb-3">Business Benefit</p>
+          <p class="text-sm text-ink-950/80">${s.benefit}</p>
+        </div>
+      </div>`).join('')}
+  </section>
+
+  <section class="max-w-4xl mx-auto px-5 sm:px-8 pb-24">
+    <div class="text-center mb-10 reveal">
+      <span class="text-brand-600 text-sm font-semibold">FAQ</span>
+      <h2 class="font-display font-800 text-3xl tracking-tight mt-2">Common Questions</h2>
+    </div>
+    <div class="space-y-3 reveal-stagger">
+      ${FAQS.map((f,i)=>`
+        <div class="border border-border2 rounded-xl overflow-hidden">
+          <button class="faq-btn w-full flex items-center justify-between gap-4 text-left px-6 py-4 font-semibold text-sm" data-faq="${i}">
+            ${f.q} <span class="faq-icon shrink-0">${icon('chevron-down','w-4 h-4 transition-transform')}</span>
+          </button>
+          <div class="faq-panel hidden px-6 pb-5 text-sm text-slate2 leading-relaxed">${f.a}</div>
+        </div>`).join('')}
+    </div>
+  </section>
+  `;
+}
+
+function pagePortfolio(){
+  const cats = ['All','Web','Mobile','Software','UI/UX','AI','E-commerce'];
+  return `
+  <section class="relative pt-40 pb-20 grid-bg">
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-white/70 to-white pointer-events-none"></div>
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 relative text-center reveal">
+      <span class="inline-flex items-center gap-2 text-xs font-semibold text-brand-600 bg-brand-50 border border-brand-100 rounded-full px-3 py-1.5 mb-6">Portfolio</span>
+      <h1 class="font-display font-800 text-4xl sm:text-5xl tracking-tight leading-tight">Our Work Speaks for Itself</h1>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-5 sm:px-8 pb-24">
+    <div class="flex flex-wrap gap-2 mb-10 reveal" id="portfolioFilters">
+      ${cats.map(c=>`<button class="tab-btn ${c==='All'?'active':''} px-4 py-2 rounded-full text-sm font-semibold border border-border2" data-cat="${c}">${c}</button>`).join('')}
+    </div>
+    <div id="portfolioGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </section>
+  `;
+}
+
+function renderPortfolioGrid(filter='All'){
+  const grid = document.getElementById('portfolioGrid');
+  if(!grid) return;
+  const list = filter==='All' ? PROJECTS : PROJECTS.filter(p=>p.cat===filter);
+  grid.innerHTML = list.map(p=>`
+    <div class="card-hover border border-border2 rounded-2xl overflow-hidden bg-white">
+      <div class="h-48 bg-gradient-to-br ${p.color} relative flex items-end p-5">
+        <span class="text-white/90 text-xs font-semibold bg-black/20 px-2.5 py-1 rounded-full">${p.industry}</span>
+      </div>
+      <div class="p-6">
+        <p class="text-xs font-semibold text-brand-600 mb-1.5">${p.cat}</p>
+        <h3 class="font-display font-700 text-lg mb-2">${p.title}</h3>
+        <p class="text-sm text-slate2 leading-relaxed mb-3">${p.desc}</p>
+        <p class="text-xs text-ink-950/60 mb-3">${p.tech}</p>
+        <div class="flex items-center gap-2 text-xs font-semibold text-brand-600 bg-brand-50 rounded-lg px-3 py-2 mb-4">${icon('trending-up','w-3.5 h-3.5')} ${p.result}</div>
+        <button class="inline-flex items-center gap-1.5 text-sm font-semibold" onclick="alert('Full case study coming soon.')">View Case Study ${icon('arrow-right','w-4 h-4')}</button>
+      </div>
+    </div>`).join('');
+  lucide.createIcons();
+}
+
+function pageBlog(){
+  const featured = ARTICLES.find(a=>a.featured);
+  const cats = ['All','Technology','AI','Web Development','Mobile','Cloud','Business','UI/UX'];
+  return `
+  <section class="relative pt-40 pb-16 grid-bg">
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-white/70 to-white pointer-events-none"></div>
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 relative text-center reveal">
+      <span class="inline-flex items-center gap-2 text-xs font-semibold text-brand-600 bg-brand-50 border border-brand-100 rounded-full px-3 py-1.5 mb-6">Blog</span>
+      <h1 class="font-display font-800 text-4xl sm:text-5xl tracking-tight leading-tight">Insights, Ideas &amp; Technology</h1>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-5 sm:px-8 pb-10 reveal">
+    <div class="card-hover border border-border2 rounded-2xl overflow-hidden bg-white grid md:grid-cols-2 cursor-pointer" onclick="openArticle('${featured.title.replace(/'/g,"\\'")}')">
+      <div class="h-64 md:h-auto bg-gradient-to-br from-brand-600 to-indigo-500"></div>
+      <div class="p-8 sm:p-10 flex flex-col justify-center">
+        <span class="text-xs font-semibold text-brand-600 bg-brand-50 w-fit px-3 py-1 rounded-full mb-4">${featured.cat} · Featured</span>
+        <h2 class="font-display font-800 text-2xl sm:text-3xl mb-3 leading-tight">${featured.title}</h2>
+        <p class="text-slate2 text-sm leading-relaxed mb-5">${featured.excerpt}</p>
+        <div class="flex items-center gap-3 text-xs text-slate2">
+          <span>${featured.author}</span><span>·</span><span>${featured.date}</span><span>·</span><span>${featured.read} read</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-5 sm:px-8 pb-24">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+      <div class="flex flex-wrap gap-2" id="blogFilters">
+        ${cats.map(c=>`<button class="tab-btn ${c==='All'?'active':''} px-4 py-2 rounded-full text-sm font-semibold border border-border2" data-cat="${c}">${c}</button>`).join('')}
+      </div>
+      <div class="relative w-full sm:w-64">
+        ${icon('search','w-4 h-4 text-slate2 absolute left-3 top-1/2 -translate-y-1/2')}
+        <input id="blogSearch" type="text" placeholder="Search articles" class="w-full pl-9 pr-3 py-2.5 rounded-lg border border-border2 text-sm focus:border-brand" />
+      </div>
+    </div>
+    <div id="blogGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    <div id="blogEmpty" class="hidden text-center py-16 text-slate2 text-sm">No articles match your search.</div>
+    <div class="flex items-center justify-center gap-2 mt-12">
+      <button class="w-9 h-9 rounded-lg border border-border2 flex items-center justify-center text-sm font-semibold bg-brand-600 text-white">1</button>
+      <button class="w-9 h-9 rounded-lg border border-border2 flex items-center justify-center text-sm font-semibold">2</button>
+      <button class="w-9 h-9 rounded-lg border border-border2 flex items-center justify-center text-sm font-semibold">3</button>
+    </div>
+  </section>
+  `;
+}
+
+function renderBlogGrid(){
+  const grid = document.getElementById('blogGrid');
+  if(!grid) return;
+  const activeCat = document.querySelector('#blogFilters .tab-btn.active')?.dataset.cat || 'All';
+  const q = (document.getElementById('blogSearch')?.value || '').toLowerCase();
+  const list = ARTICLES.filter(a=>!a.featured)
+    .filter(a=> activeCat==='All' || a.cat===activeCat)
+    .filter(a=> a.title.toLowerCase().includes(q) || a.excerpt.toLowerCase().includes(q));
+  document.getElementById('blogEmpty').classList.toggle('hidden', list.length>0);
+  grid.innerHTML = list.map(a=>`
+    <div class="card-hover border border-border2 rounded-2xl overflow-hidden bg-white cursor-pointer" onclick="openArticle('${a.title.replace(/'/g,"\\'")}')">
+      <div class="h-40 bg-gradient-to-br from-blue-100 to-brand-50 flex items-center justify-center">${icon('file-text','w-8 h-8 text-brand-300')}</div>
+      <div class="p-6">
+        <span class="text-xs font-semibold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full">${a.cat}</span>
+        <h3 class="font-display font-700 text-base mt-3 mb-2 leading-snug">${a.title}</h3>
+        <p class="text-sm text-slate2 leading-relaxed mb-4">${a.excerpt}</p>
+        <div class="flex items-center justify-between text-xs text-slate2">
+          <span>${a.author} · ${a.date}</span><span>${a.read} read</span>
+        </div>
+      </div>
+    </div>`).join('');
+  lucide.createIcons();
+}
+
+function pageBlogDetail(title){
+  const a = ARTICLES.find(x=>x.title===title) || ARTICLES[0];
+  return `
+  <section class="pt-36 pb-20 max-w-3xl mx-auto px-5 sm:px-8">
+    <div class="reveal">
+      <div class="flex items-center gap-2 text-xs text-slate2 mb-6">
+        <a href="#blog" data-nav="blog" class="hover:text-brand-600">Blog</a> ${icon('chevron-right','w-3.5 h-3.5')} <span>${a.cat}</span>
+      </div>
+      <span class="text-xs font-semibold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full">${a.cat}</span>
+      <h1 class="font-display font-800 text-3xl sm:text-4xl tracking-tight mt-4 mb-5 leading-tight">${a.title}</h1>
+      <div class="flex items-center gap-3 text-sm text-slate2 pb-8 border-b border-border2">
+        <div class="w-9 h-9 rounded-full bg-brand-50 text-brand-600 font-display font-700 text-xs flex items-center justify-center">${a.author.split(' ').map(n=>n[0]).join('')}</div>
+        <span>${a.author}</span><span>·</span><span>${a.date}</span><span>·</span><span>${a.read} read</span>
+      </div>
+      <div class="h-72 rounded-2xl bg-gradient-to-br from-brand-600 to-indigo-500 my-10"></div>
+      <div class="prose-content space-y-5 text-ink-950/85 leading-relaxed text-[15px]">
+        <p>${a.excerpt}</p>
+        <h2 class="font-display font-700 text-xl pt-2">Where teams usually go wrong</h2>
+        <p>Most delays come from unclear ownership rather than technical difficulty. Before writing a scope document, we ask who signs off on each decision, and how quickly they can turn it around.</p>
+        <div class="bg-ink-950 text-white/90 rounded-xl p-5 text-sm font-mono overflow-x-auto"><pre>function estimate(scope) {
+  return scope.clarity > 0.7
+    ? "reliable timeline"
+    : "discovery phase needed";
+}</pre></div>
+        <h2 class="font-display font-700 text-xl pt-2">What we recommend instead</h2>
+        <p>Start with a two-week discovery sprint that produces a written scope, an architecture outline and a fixed estimate. It costs time upfront, but it removes the single biggest source of budget overruns later.</p>
+      </div>
+      <div class="flex items-center gap-3 pt-10 mt-10 border-t border-border2">
+        <span class="text-sm font-semibold text-slate2">Share:</span>
+        <a href="#" class="w-9 h-9 rounded-lg border border-border2 flex items-center justify-center hover:bg-brand-50">${icon('linkedin','w-4 h-4')}</a>
+        <a href="#" class="w-9 h-9 rounded-lg border border-border2 flex items-center justify-center hover:bg-brand-50">${icon('twitter','w-4 h-4')}</a>
+        <a href="#" class="w-9 h-9 rounded-lg border border-border2 flex items-center justify-center hover:bg-brand-50">${icon('link','w-4 h-4')}</a>
+      </div>
+    </div>
+  </section>
+  <section class="max-w-7xl mx-auto px-5 sm:px-8 pb-24">
+    <h3 class="font-display font-700 text-xl mb-6">Related Articles</h3>
+    <div class="grid sm:grid-cols-3 gap-6">
+      ${ARTICLES.filter(x=>x.title!==a.title).slice(0,3).map(x=>`
+        <div class="card-hover border border-border2 rounded-2xl overflow-hidden bg-white cursor-pointer" onclick="openArticle('${x.title.replace(/'/g,"\\'")}')">
+          <div class="h-32 bg-gradient-to-br from-blue-100 to-brand-50"></div>
+          <div class="p-5">
+            <h4 class="font-display font-700 text-sm leading-snug mb-2">${x.title}</h4>
+            <p class="text-xs text-slate2">${x.date}</p>
+          </div>
+        </div>`).join('')}
+    </div>
+  </section>
+  <section class="max-w-4xl mx-auto px-5 sm:px-8 pb-24">
+    <div class="noise-dark rounded-3xl px-8 py-12 text-center text-white">
+      <h3 class="font-display font-700 text-2xl mb-3">Get insights like this in your inbox</h3>
+      <p class="text-white/60 text-sm mb-6">One email a month. No noise, unsubscribe anytime.</p>
+      <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input type="email" placeholder="you@company.com" class="flex-1 px-4 py-3 rounded-lg text-sm text-ink-950" />
+        <button class="btn-primary px-6 py-3 rounded-lg text-sm font-semibold">Subscribe</button>
+      </div>
+    </div>
+  </section>
+  `;
+}
+
+function pageContact(){
+  return `
+  <section class="relative pt-40 pb-16 grid-bg">
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-white/70 to-white pointer-events-none"></div>
+    <div class="max-w-3xl mx-auto px-5 sm:px-8 relative text-center reveal">
+      <span class="inline-flex items-center gap-2 text-xs font-semibold text-brand-600 bg-brand-50 border border-brand-100 rounded-full px-3 py-1.5 mb-6">Contact</span>
+      <h1 class="font-display font-800 text-4xl sm:text-5xl tracking-tight leading-tight mb-4">Let's Build What's Next</h1>
+      <p class="text-slate2">Have a project, idea, or challenge? Talk to our team.</p>
+    </div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-5 sm:px-8 pb-24 grid lg:grid-cols-5 gap-10">
+    <div class="lg:col-span-2 space-y-6 reveal">
+      <div class="flex gap-4">
+        <div class="w-11 h-11 shrink-0 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600">${icon('mail')}</div>
+        <div><p class="font-semibold text-sm mb-0.5">Email</p><p class="text-sm text-slate2">hello@wifrit.com</p></div>
+      </div>
+      <div class="flex gap-4">
+        <div class="w-11 h-11 shrink-0 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600">${icon('phone')}</div>
+        <div><p class="font-semibold text-sm mb-0.5">Phone</p><p class="text-sm text-slate2">+1 (415) 555-0198</p></div>
+      </div>
+      <div class="flex gap-4">
+        <div class="w-11 h-11 shrink-0 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600">${icon('map-pin')}</div>
+        <div><p class="font-semibold text-sm mb-0.5">Address</p><p class="text-sm text-slate2">548 Market St, San Francisco, CA 94104</p></div>
+      </div>
+      <div class="flex gap-4">
+        <div class="w-11 h-11 shrink-0 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600">${icon('clock')}</div>
+        <div><p class="font-semibold text-sm mb-0.5">Working Hours</p><p class="text-sm text-slate2">Mon – Fri, 9:00 AM – 6:00 PM PT</p></div>
+      </div>
+      <div class="flex items-center gap-3 pt-4">
+        <a href="#" class="w-9 h-9 rounded-lg border border-border2 flex items-center justify-center hover:bg-brand-50">${icon('linkedin','w-4 h-4')}</a>
+        <a href="#" class="w-9 h-9 rounded-lg border border-border2 flex items-center justify-center hover:bg-brand-50">${icon('twitter','w-4 h-4')}</a>
+        <a href="#" class="w-9 h-9 rounded-lg border border-border2 flex items-center justify-center hover:bg-brand-50">${icon('github','w-4 h-4')}</a>
+      </div>
+    </div>
+
+    <div class="lg:col-span-3 reveal">
+      <form id="contactForm" class="border border-border2 rounded-2xl p-6 sm:p-8 space-y-5" novalidate>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label for="cf-name" class="text-xs font-semibold text-slate2 mb-1.5 block">Name *</label>
+            <input id="cf-name" name="name" type="text" required class="w-full px-4 py-3 rounded-lg border border-border2 text-sm focus:border-brand" />
+            <p class="field-error text-xs text-red-600 mt-1 hidden">Please enter your name.</p>
+          </div>
+          <div>
+            <label for="cf-company" class="text-xs font-semibold text-slate2 mb-1.5 block">Company</label>
+            <input id="cf-company" name="company" type="text" class="w-full px-4 py-3 rounded-lg border border-border2 text-sm focus:border-brand" />
+          </div>
+          <div>
+            <label for="cf-email" class="text-xs font-semibold text-slate2 mb-1.5 block">Email *</label>
+            <input id="cf-email" name="email" type="email" required class="w-full px-4 py-3 rounded-lg border border-border2 text-sm focus:border-brand" />
+            <p class="field-error text-xs text-red-600 mt-1 hidden">Please enter a valid email.</p>
+          </div>
+          <div>
+            <label for="cf-phone" class="text-xs font-semibold text-slate2 mb-1.5 block">Phone</label>
+            <input id="cf-phone" name="phone" type="tel" class="w-full px-4 py-3 rounded-lg border border-border2 text-sm focus:border-brand" />
+          </div>
+          <div>
+            <label for="cf-service" class="text-xs font-semibold text-slate2 mb-1.5 block">Service Required</label>
+            <select id="cf-service" name="service" class="w-full px-4 py-3 rounded-lg border border-border2 text-sm focus:border-brand bg-white">
+              <option>Custom Software Development</option>
+              <option>Web Development</option>
+              <option>Mobile App Development</option>
+              <option>UI/UX Design</option>
+              <option>Cloud & DevOps</option>
+              <option>AI & Automation</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div>
+            <label for="cf-budget" class="text-xs font-semibold text-slate2 mb-1.5 block">Budget</label>
+            <select id="cf-budget" name="budget" class="w-full px-4 py-3 rounded-lg border border-border2 text-sm focus:border-brand bg-white">
+              <option>Under $10k</option>
+              <option>$10k – $50k</option>
+              <option>$50k – $150k</option>
+              <option>$150k+</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="cf-message" class="text-xs font-semibold text-slate2 mb-1.5 block">Message *</label>
+          <textarea id="cf-message" name="message" required rows="5" class="w-full px-4 py-3 rounded-lg border border-border2 text-sm focus:border-brand resize-none"></textarea>
+          <p class="field-error text-xs text-red-600 mt-1 hidden">Please tell us a bit about your project.</p>
+        </div>
+        <button type="submit" id="cf-submit" class="btn-primary w-full sm:w-auto px-7 py-3.5 rounded-lg font-semibold text-sm flex items-center justify-center gap-2">
+          <span id="cf-submit-label">Send Message</span>
+        </button>
+        <div id="cf-success" class="hidden items-center gap-2 text-sm font-medium text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-lg px-4 py-3">${icon('check-circle-2','w-4 h-4')} Thanks — your message has been sent. We'll reply within one business day.</div>
+        <div id="cf-error" class="hidden items-center gap-2 text-sm font-medium text-red-700 bg-red-50 border border-red-100 rounded-lg px-4 py-3">${icon('alert-circle','w-4 h-4')} Something went wrong. Please try again.</div>
+      </form>
+    </div>
+  </section>
+  `;
+}
+
+/* ================= ROUTER ================= */
+const PAGES = { home:pageHome, about:pageAbout, services:pageServices, portfolio:pagePortfolio, blog:pageBlog, 'blog-detail':pageBlogDetail, contact:pageContact };
+let currentArticle = null;
+
+function navigate(name, arg){
+  const app = document.getElementById('app');
+  document.getElementById('mobileMenu').classList.add('hidden');
+  document.getElementById('mobileToggle').setAttribute('aria-expanded','false');
+  if(name === 'blog-detail'){ currentArticle = arg; app.innerHTML = pageBlogDetail(arg); }
+  else { app.innerHTML = PAGES[name] ? PAGES[name]() : pageHome(); }
+
+  document.querySelectorAll('[data-nav]').forEach(el=>{
+    el.classList.toggle('active-link', el.dataset.nav === name);
+  });
+
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
+  lucide.createIcons();
+  initPageBehaviors(name);
+  observeReveals();
+}
+
+function openArticle(title){ navigate('blog-detail', title); }
+window.openArticle = openArticle;
+window.navigate = navigate;
+
+function initPageBehaviors(name){
+  if(name==='portfolio'){
+    renderPortfolioGrid('All');
+    document.querySelectorAll('#portfolioFilters .tab-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('#portfolioFilters .tab-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        renderPortfolioGrid(btn.dataset.cat);
+      });
+    });
+  }
+  if(name==='blog'){
+    renderBlogGrid();
+    document.querySelectorAll('#blogFilters .tab-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('#blogFilters .tab-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        renderBlogGrid();
+      });
+    });
+    document.getElementById('blogSearch')?.addEventListener('input', renderBlogGrid);
+  }
+  if(name==='services'){
+    document.querySelectorAll('.faq-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const panel = btn.nextElementSibling;
+        const iconEl = btn.querySelector('.faq-icon i');
+        const isOpen = !panel.classList.contains('hidden');
+        panel.classList.toggle('hidden');
+        if(iconEl) iconEl.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+      });
+    });
+  }
+  if(name==='home'){
+    setTimeout(runCounters, 200);
+  }
+  if(name==='contact'){
+    setupContactForm();
+  }
+}
+
+function setupContactForm(){
+  const form = document.getElementById('contactForm');
+  if(!form) return;
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    let valid = true;
+    const name = document.getElementById('cf-name');
+    const email = document.getElementById('cf-email');
+    const message = document.getElementById('cf-message');
+    document.querySelectorAll('.field-error').forEach(f=>f.classList.add('hidden'));
+
+    if(!name.value.trim()){ name.nextElementSibling.classList.remove('hidden'); valid=false; }
+    if(!email.value.trim() || !/^\S+@\S+\.\S+$/.test(email.value)){ email.nextElementSibling.classList.remove('hidden'); valid=false; }
+    if(!message.value.trim()){ message.nextElementSibling.classList.remove('hidden'); valid=false; }
+
+    document.getElementById('cf-success').classList.add('hidden');
+    document.getElementById('cf-success').classList.remove('flex');
+    document.getElementById('cf-error').classList.add('hidden');
+    document.getElementById('cf-error').classList.remove('flex');
+
+    if(!valid) return;
+
+    const submitBtn = document.getElementById('cf-submit');
+    const label = document.getElementById('cf-submit-label');
+    submitBtn.disabled = true;
+    label.textContent = 'Sending…';
+    submitBtn.classList.add('opacity-70');
+
+    // Mock submission — replace with a real API call, e.g.:
+    // fetch('/api/contact', { method:'POST', body: new FormData(form) })
+    setTimeout(()=>{
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('opacity-70');
+      label.textContent = 'Send Message';
+      const ok = true; // simulate success
+      if(ok){
+        document.getElementById('cf-success').classList.remove('hidden');
+        document.getElementById('cf-success').classList.add('flex');
+        form.reset();
+      } else {
+        document.getElementById('cf-error').classList.remove('hidden');
+        document.getElementById('cf-error').classList.add('flex');
+      }
+    }, 1100);
+  });
+}
+
+function runCounters(){
+  document.querySelectorAll('.counter').forEach(el=>{
+    const target = parseInt(el.dataset.target,10);
+    const suffix = el.dataset.suffix || '';
+    let cur = 0;
+    const steps = 40;
+    const inc = target/steps;
+    const t = setInterval(()=>{
+      cur += inc;
+      if(cur >= target){ cur = target; clearInterval(t); }
+      el.textContent = Math.round(cur) + suffix;
+    }, 25);
+  });
+}
+
+function observeReveals(){
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+    });
+  }, { threshold:0.15 });
+  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el=>io.observe(el));
+}
+
+/* ================= NAV / SCROLL CHROME ================= */
+document.addEventListener('click', (e)=>{
+  const link = e.target.closest('[data-nav]');
+  if(link){
+    e.preventDefault();
+    navigate(link.dataset.nav);
+  }
+});
+
+document.getElementById('mobileToggle').addEventListener('click', ()=>{
+  const menu = document.getElementById('mobileMenu');
+  const isHidden = menu.classList.contains('hidden');
+  menu.classList.toggle('hidden');
+  document.getElementById('mobileToggle').setAttribute('aria-expanded', String(isHidden));
+});
+
+window.addEventListener('scroll', ()=>{
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+document.querySelectorAll('.glow').forEach(()=>{}); // placeholder for future mouse tracking
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ================= INIT ================= */
+navigate('home');
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand: #2563EB;
+  --brand-700: #1D4ED8;
+  --ink-950: #050816;
+  --ink-900: #0B1120;
+  --slate: #64748B;
+  --bg: #F8FAFC;
+  --border: #E2E8F0;
+  --ease: cubic-bezier(0.16, 0.8, 0.24, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+body {
+  font-family: var(--font-inter), sans-serif;
+  background: #ffffff;
+  color: #050816;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-plus-jakarta-sans), sans-serif;
+}
+
+::selection {
+  background: #2563EB;
+  color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.14) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.noise-dark {
+  background: radial-gradient(1100px 500px at 15% -10%, rgba(37, 99, 235, 0.35), transparent 60%),
+              radial-gradient(700px 400px at 100% 0%, rgba(37, 99, 235, 0.18), transparent 60%),
+              #050816;
+}
+
+.num-mark {
+  font-family: var(--font-plus-jakarta-sans), sans-serif;
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 1.5px #cbd5e1;
+}
+
+/* Cross-browser mask for marquees (WebKit/iOS Safari + Chromium/Firefox) */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black 64px, black calc(100% - 64px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, black 64px, black calc(100% - 64px), transparent 100%);
+}
+
+/* Prevent iOS Safari auto-zoom on inputs while preserving styling */
+@media screen and (max-width: 767px) {
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+}
+
+/* Smooth touch handling on iOS */
+button, a, input, select, textarea {
+  touch-action: manipulation;
+}
+
+input:focus, textarea:focus, select:focus, button:focus-visible, a:focus-visible {
+  outline: 2px solid #2563EB;
+  outline-offset: 2px;
+}
