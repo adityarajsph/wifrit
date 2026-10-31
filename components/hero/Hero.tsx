@@ -10,7 +10,7 @@ export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
 
-  // Single top-level mouse tracking values normalized between -1 and 1
+  // Normalized mouse coordinates between -1 and 1 for 3D parallax
   const rawMouseX = useMotionValue(0);
   const rawMouseY = useMotionValue(0);
 
@@ -41,20 +41,20 @@ export function Hero() {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative pt-36 pb-20 sm:pt-44 sm:pb-28 lg:pt-48 lg:pb-32 overflow-hidden"
+      className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-44 lg:pb-32 overflow-hidden"
     >
-      {/* Background with drifting gradient mesh and animated grid */}
+      {/* Refined Architectural Background with subtle grid & ambient blooms */}
       <HeroBackground />
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Copy & Actions */}
-          <div className="lg:col-span-7">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          {/* Left Column: Authentic copy, clear value proposition, magnetic CTAs */}
+          <div className="lg:col-span-7 flex justify-center lg:justify-start">
             <HeroContent />
           </div>
 
-          {/* Right Column: Interactive 3D Architecture Visual */}
-          <div className="lg:col-span-5 flex justify-center">
+          {/* Right Column: Interactive System Architecture & Telemetry Dashboard */}
+          <div className="lg:col-span-5 flex justify-center w-full">
             <HeroVisual mouseX={mouseX} mouseY={mouseY} />
           </div>
         </div>

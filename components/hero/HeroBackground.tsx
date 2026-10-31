@@ -7,63 +7,66 @@ export function HeroBackground() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
-      {/* High-tech subtle dot-matrix grid with cross-browser radial mask */}
+    <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10 select-none">
+      {/* 1. Precision Subtle Architectural Grid */}
       <div
-        className="absolute inset-0 grid-bg opacity-70"
+        className="absolute inset-0 opacity-[0.45]"
         style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(148, 163, 184, 0.18) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(148, 163, 184, 0.18) 1px, transparent 1px)
+          `,
+          backgroundSize: "48px 48px",
           WebkitMaskImage:
-            "radial-gradient(ellipse 75% 60% at 50% 30%, black 40%, transparent 100%)",
+            "radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 80%)",
           maskImage:
-            "radial-gradient(ellipse 75% 60% at 50% 30%, black 40%, transparent 100%)",
+            "radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 80%)",
         }}
       />
 
-      {/* Soft Vignette Overlay ensuring text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/80 to-white" />
+      {/* 2. Soft Ambient Vignette for Maximum Contrast & Readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/80 to-white" />
 
-      {/* Hardware-accelerated soft gradient ambient glows (iOS WebKit safe) */}
+      {/* 3. Refined Ambient Glow Orbs */}
       {!shouldReduceMotion ? (
         <>
-          {/* Ambient Brand Orb (Top-Right) */}
+          {/* Top-Right Soft Blue Bloom */}
           <motion.div
             animate={{
               x: [0, 20, 0],
               y: [0, -15, 0],
             }}
             transition={{
-              duration: 10,
+              duration: 12,
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            style={{ willChange: "transform" }}
-            className="absolute -top-24 right-10 w-96 h-96 rounded-full bg-blue-500/15 blur-3xl"
+            className="absolute -top-32 right-0 sm:right-1/12 w-[420px] sm:w-[600px] h-[420px] sm:h-[600px] rounded-full bg-blue-500/[0.12] blur-[100px] sm:blur-[130px]"
           />
 
-          {/* Ambient Cyan Accent (Center-Left) */}
+          {/* Top-Left Subtle Indigo Bloom */}
           <motion.div
             animate={{
               x: [0, -15, 0],
               y: [0, 20, 0],
             }}
             transition={{
-              duration: 12,
+              duration: 14,
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            style={{ willChange: "transform" }}
-            className="absolute top-1/4 left-1/12 w-80 h-80 rounded-full bg-sky-400/15 blur-3xl"
+            className="absolute top-1/4 -left-20 w-[360px] sm:w-[500px] h-[360px] sm:h-[500px] rounded-full bg-indigo-500/[0.08] blur-[90px] sm:blur-[120px]"
           />
 
-          {/* Indigo Depth Glow */}
-          <div className="absolute -top-10 left-1/3 w-[500px] h-[350px] rounded-full bg-indigo-500/10 blur-3xl" />
+          {/* Center Light Accent */}
+          <div className="absolute top-10 left-1/3 w-[300px] sm:w-[450px] h-[250px] sm:h-[350px] rounded-full bg-sky-400/[0.07] blur-[110px]" />
         </>
       ) : (
-        <div className="absolute top-0 right-1/4 w-96 h-96 rounded-full bg-blue-500/10 blur-2xl" />
+        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] rounded-full bg-blue-500/[0.08] blur-[100px]" />
       )}
 
-      {/* Subtle top horizontal glowing accent rule */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand/20 to-transparent" />
+      {/* 4. Top Accent Hairline */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
     </div>
   );
 }

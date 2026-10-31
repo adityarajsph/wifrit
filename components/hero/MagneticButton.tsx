@@ -57,7 +57,7 @@ export function MagneticButton({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative inline-block p-1 select-none"
+      className="relative block sm:inline-block select-none w-full sm:w-auto"
     >
       <motion.div
         animate={
@@ -75,37 +75,28 @@ export function MagneticButton({
           mass: 0.5,
         }}
         whileTap={{ scale: 0.97 }}
-        className="relative group rounded-xl"
+        className="relative group rounded-xl w-full sm:w-auto"
       >
         {/* Animated Gradient Glow Aura on hover */}
         <motion.div
           animate={{
-            opacity: isHovered ? 1 : 0,
-            scale: isHovered ? 1.05 : 0.95,
+            opacity: isHovered ? 1 : 0.25,
+            scale: isHovered ? 1.04 : 0.98,
           }}
           transition={{ duration: 0.3, ease: TRANSITION_EASE }}
-          className="absolute -inset-1 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-500 to-cyan-400 blur-md pointer-events-none"
-        />
-
-        {/* Animated Border Shimmer */}
-        <motion.div
-          animate={{
-            opacity: isHovered ? 0.9 : 0,
-          }}
-          transition={{ duration: 0.25 }}
-          className="absolute -inset-[1px] rounded-xl bg-gradient-to-r from-blue-400 via-indigo-300 to-cyan-300 pointer-events-none"
+          className="absolute -inset-1 rounded-xl bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 blur-md pointer-events-none"
         />
 
         {/* Button Body */}
         <div
           className={cn(
-            "relative px-7 py-3.5 rounded-xl font-semibold text-sm sm:text-base text-white bg-gradient-to-r from-brand to-brand-700 shadow-[0_10px_25px_-5px_rgba(37,99,235,0.6)] flex items-center justify-center gap-2 select-none overflow-hidden",
+            "relative px-7 py-3.5 rounded-xl font-semibold text-sm sm:text-base text-white bg-gradient-to-r from-brand via-blue-600 to-brand-700 shadow-[0_10px_25px_-5px_rgba(37,99,235,0.5)] flex items-center justify-center gap-2 select-none overflow-hidden border border-blue-400/30 w-full sm:w-auto",
             className
           )}
         >
           {/* Subtle glossy sheen sweep */}
           <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
-          <span className="relative z-10 flex items-center gap-2">{children}</span>
+          <span className="relative z-10 flex items-center justify-center gap-2">{children}</span>
         </div>
       </motion.div>
     </div>
@@ -113,11 +104,15 @@ export function MagneticButton({
 
   if (href) {
     return (
-      <Link href={href} onClick={onClick}>
+      <Link href={href} onClick={onClick} className="w-full sm:w-auto block sm:inline-block">
         {Content}
       </Link>
     );
   }
 
-  return <button onClick={onClick}>{Content}</button>;
+  return (
+    <button onClick={onClick} className="w-full sm:w-auto block sm:inline-block">
+      {Content}
+    </button>
+  );
 }
