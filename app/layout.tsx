@@ -37,6 +37,14 @@ export const metadata: Metadata = {
     "WIFRIT",
   ],
   authors: [{ name: "WIFRIT Technologies" }],
+  icons: {
+    icon: [
+      { url: "/wifrit_black.png", type: "image/png" },
+    ],
+    apple: [
+      { url: "/wifrit_black.png", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({
