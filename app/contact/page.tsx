@@ -49,10 +49,10 @@ export default function ContactPage() {
             <div>
               <p className="font-semibold text-sm text-ink-950 mb-0.5">Email</p>
               <a
-                href="mailto:hello@wifrit.com"
+                href="mailto:info@wifrit.com"
                 className="text-sm text-slate2 hover:text-brand transition-colors"
               >
-                hello@wifrit.com
+                info@wifrit.com
               </a>
             </div>
           </div>
@@ -64,10 +64,10 @@ export default function ContactPage() {
             <div>
               <p className="font-semibold text-sm text-ink-950 mb-0.5">Phone</p>
               <a
-                href="tel:+14155550198"
+                href="tel:+917903843746"
                 className="text-sm text-slate2 hover:text-brand transition-colors"
               >
-                +1 (415) 555-0198
+                +91 79038 43746
               </a>
             </div>
           </div>
@@ -79,7 +79,7 @@ export default function ContactPage() {
             <div>
               <p className="font-semibold text-sm text-ink-950 mb-0.5">Address</p>
               <p className="text-sm text-slate2 leading-relaxed">
-                548 Market St, San Francisco, CA 94104
+                Netaji Subhash Place, New Delhi
               </p>
             </div>
           </div>
@@ -90,7 +90,7 @@ export default function ContactPage() {
             </div>
             <div>
               <p className="font-semibold text-sm text-ink-950 mb-0.5">Working Hours</p>
-              <p className="text-sm text-slate2">Mon – Fri, 9:00 AM – 6:00 PM PT</p>
+              <p className="text-sm text-slate2">Mon – Fri, 9:00 AM – 6:00 PM IST</p>
             </div>
           </div>
 
