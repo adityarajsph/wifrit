@@ -39,9 +39,9 @@ export default function BlogPage() {
   return (
     <>
       {/* 1. Page Header */}
-      <section className="relative pt-40 pb-16 grid-bg overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-white/70 to-white pointer-events-none" />
-        <div className="max-w-4xl mx-auto px-5 sm:px-8 relative text-center">
+      <section className="page-hero blog-hero relative pt-40 pb-16 grid-bg overflow-hidden">
+        <div className="blog-hero-wash absolute inset-0 pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 relative text-center">
           <motion.div
             initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -51,7 +51,7 @@ export default function BlogPage() {
               Blog
             </span>
             <h1 className="font-display font-800 text-4xl sm:text-5xl lg:text-6xl text-ink-950 tracking-tight leading-tight">
-              Insights, Ideas &amp; Technology
+              Insights, ideas &amp; <span className="text-brand">technology</span>
             </h1>
             <p className="text-slate2 text-base sm:text-lg mt-4 max-w-xl mx-auto">
               Engineering paradigms, architecture decisions, and product strategies from our engineering team.
@@ -76,9 +76,9 @@ export default function BlogPage() {
                   borderColor: "#c7d6f5",
                 }
           }
-          className="border border-border2 rounded-3xl overflow-hidden bg-white grid md:grid-cols-2 shadow-sm transition-all group"
+          className="blog-featured border border-border2 rounded-3xl overflow-hidden bg-white grid md:grid-cols-2 shadow-sm transition-all group"
         >
-          <div className="h-64 md:h-auto min-h-[300px] bg-gradient-to-br from-brand via-blue-600 to-indigo-600 relative p-8 flex flex-col justify-end">
+          <div className="blog-feature-visual h-64 md:h-auto min-h-[300px] bg-gradient-to-br from-brand via-blue-600 to-indigo-600 relative p-8 flex flex-col justify-end">
             <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300" />
             <div className="relative z-10">
               <span className="text-xs font-semibold text-white/95 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full border border-white/25">

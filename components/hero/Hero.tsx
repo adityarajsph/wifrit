@@ -41,7 +41,7 @@ export function Hero() {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-44 lg:pb-32 overflow-hidden"
+      className="home-hero relative pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-44 lg:pb-32 overflow-hidden"
     >
       {/* Refined Architectural Background with subtle grid & ambient blooms */}
       <HeroBackground />
@@ -54,7 +54,7 @@ export function Hero() {
           </div>
 
           {/* Right Column: Interactive System Architecture & Telemetry Dashboard */}
-          <div className="lg:col-span-5 flex justify-center w-full">
+          <div className="home-hero-visual lg:col-span-5 flex justify-center w-full">
             <HeroVisual mouseX={mouseX} mouseY={mouseY} />
           </div>
         </div>

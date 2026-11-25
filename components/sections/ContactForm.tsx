@@ -51,7 +51,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="border border-border2 rounded-3xl p-6 sm:p-10 space-y-6 bg-white shadow-xl shadow-slate-200/50"
+      className="contact-form border border-border2 rounded-3xl p-6 sm:p-10 space-y-6 bg-white shadow-xl shadow-slate-200/50"
       noValidate
     >
       <div className="grid sm:grid-cols-2 gap-5">
@@ -129,22 +129,18 @@ export function ContactForm() {
 
         {/* Service Required */}
         <div>
-          <label htmlFor="cf-service" className="text-xs font-bold text-slate2 uppercase tracking-wide mb-1.5 block">
+          <span className="text-xs font-bold text-slate2 uppercase tracking-wide mb-2 block">
             Service Required
-          </label>
-          <select
-            id="cf-service"
-            {...register("service")}
-            className="w-full px-4 py-3 rounded-xl border border-border2 text-base sm:text-sm text-ink-950 bg-white focus:outline-brand transition-colors cursor-pointer"
-          >
-            <option>Custom Software Development</option>
-            <option>Web Development</option>
-            <option>Mobile App Development</option>
-            <option>UI/UX Design</option>
-            <option>Cloud & DevOps</option>
-            <option>AI & Automation</option>
-            <option>Not sure yet</option>
-          </select>
+          </span>
+          <div id="cf-service" className="contact-service-chips" role="radiogroup" aria-label="Service Required">
+            {["Custom Software Development", "Web Development", "Mobile App Development", "UI/UX Design", "Cloud & DevOps", "AI & Automation"].map((service) => (
+              <label key={service} className="contact-service-chip">
+                <input type="radio" value={service} {...register("service")} />
+                <span>{service}</span>
+              </label>
+            ))}
+          </div>
+          {errors.service && <p className="text-xs text-red-600 mt-1.5 font-medium">{errors.service.message}</p>}
         </div>
 
         {/* Budget */}

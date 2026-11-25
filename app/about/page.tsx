@@ -2,8 +2,8 @@
 
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Crosshair, Telescope, Dot } from "lucide-react";
-import { VALUES, TECH } from "@/lib/data";
+import { Crosshair, Telescope } from "lucide-react";
+import { ABOUT_CONTENT, VALUES, TECH } from "@/lib/data";
 import { Icon } from "@/components/ui/Icon";
 import { CTASection } from "@/components/sections/CTASection";
 import { TRANSITION_EASE } from "@/lib/utils";
@@ -14,8 +14,8 @@ export default function AboutPage() {
   return (
     <>
       {/* 1. Page Header */}
-      <section className="relative pt-40 pb-20 grid-bg overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-white/70 to-white pointer-events-none" />
+      <section className="page-hero about-hero relative pt-40 pb-20 grid-bg overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/20 to-white/40 pointer-events-none" />
         <div className="max-w-4xl mx-auto px-5 sm:px-8 relative text-center">
           <motion.div
             initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
@@ -23,17 +23,18 @@ export default function AboutPage() {
             transition={{ duration: 0.6, ease: TRANSITION_EASE }}
           >
             <span className="inline-flex items-center gap-2 text-xs font-semibold text-brand bg-brand-50 border border-brand-100 rounded-full px-4 py-1.5 mb-6">
-              About WIFRIT
+              {ABOUT_CONTENT.eyebrow}
             </span>
-            <h1 className="font-display font-800 text-4xl sm:text-5xl lg:text-6xl text-ink-950 tracking-tight leading-tight">
-              Technology That Turns Vision Into Reality
+            <h1 className="font-display font-800 text-4xl sm:text-5xl lg:text-7xl text-ink-950 tracking-tight leading-tight">
+              {ABOUT_CONTENT.headlineStart} <br className="hidden md:block" />
+              <span className="text-brand">{ABOUT_CONTENT.headlineAccent}</span> {ABOUT_CONTENT.headlineEnd}
             </h1>
           </motion.div>
         </div>
       </section>
 
       {/* 2. Our Story (2-column layout) */}
-      <section className="max-w-5xl mx-auto px-5 sm:px-8 py-16 grid md:grid-cols-2 gap-12 items-start">
+      <section className="max-w-7xl mx-auto px-5 sm:px-8 py-16 grid gap-8 items-start">
         <motion.div
           initial={{ opacity: 0, x: shouldReduceMotion ? 0 : -20 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -41,10 +42,10 @@ export default function AboutPage() {
           transition={{ duration: 0.6, ease: TRANSITION_EASE }}
         >
           <span className="text-brand text-sm font-semibold tracking-wide">
-            Our Story
+            {ABOUT_CONTENT.storyEyebrow}
           </span>
-          <h2 className="font-display font-800 text-3xl sm:text-4xl text-ink-950 tracking-tight mt-2 mb-5 leading-tight">
-            Started by engineers who were tired of rebuilding the same broken process.
+          <h2 className="max-w-2xl break-words font-display font-800 text-2xl leading-tight tracking-tight text-ink-950 sm:text-3xl lg:text-4xl mt-2 mb-5">
+            {ABOUT_CONTENT.storyTitle}
           </h2>
         </motion.div>
 
@@ -53,37 +54,21 @@ export default function AboutPage() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6, delay: 0.1, ease: TRANSITION_EASE }}
-          className="space-y-4 text-slate2 leading-relaxed text-base sm:text-lg"
+          className="about-story-copy space-y-4 text-slate2 leading-relaxed text-base sm:text-lg"
         >
-          <p>
-            WIFRIT began as a small team of engineers and designers who kept
-            encountering the same problem at different companies: software that
-            technically worked, but never quite matched how the business actually
-            ran.
-          </p>
-          <p>
-            We built WIFRIT to close that gap. Every engagement starts with
-            understanding the workflow before touching a design tool or a line
-            of code, because a well-built feature nobody needed is still a
-            failed project.
-          </p>
-          <p>
-            Today we work across healthcare, fintech, logistics, travel and
-            education, building software, web, mobile and cloud products for
-            teams that need a partner who ships and stays.
-          </p>
+          {ABOUT_CONTENT.story.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         </motion.div>
       </section>
 
       {/* 3. Mission & Vision Cards */}
-      <section className="max-w-7xl mx-auto px-5 sm:px-8 pb-16 grid sm:grid-cols-2 gap-6">
+      <section className="max-w-7xl mx-auto px-5 sm:px-8 pb-20 grid sm:grid-cols-2 gap-6">
         {/* Mission Card */}
         <motion.div
           initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.55, ease: TRANSITION_EASE }}
-          className="border border-border2 rounded-2xl p-8 sm:p-10 bg-bg2 hover:border-brand/30 transition-colors"
+          className="about-purpose-card border border-border2 rounded-[2rem] p-8 sm:p-10 bg-white hover:border-brand/30 transition-colors"
         >
           <div className="w-12 h-12 rounded-xl bg-brand-50 border border-brand-100 flex items-center justify-center text-brand mb-6">
             <Crosshair className="w-6 h-6" />
@@ -92,8 +77,7 @@ export default function AboutPage() {
             Our Mission
           </h3>
           <p className="text-slate2 leading-relaxed text-base">
-            Use technology to simplify complex business challenges and create
-            digital products that deliver measurable value.
+            {ABOUT_CONTENT.mission}
           </p>
         </motion.div>
 
@@ -103,7 +87,7 @@ export default function AboutPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.55, delay: 0.1, ease: TRANSITION_EASE }}
-          className="border border-border2 rounded-2xl p-8 sm:p-10 bg-bg2 hover:border-brand/30 transition-colors"
+          className="about-purpose-card border border-border2 rounded-[2rem] p-8 sm:p-10 bg-white hover:border-brand/30 transition-colors"
         >
           <div className="w-12 h-12 rounded-xl bg-brand-50 border border-brand-100 flex items-center justify-center text-brand mb-6">
             <Telescope className="w-6 h-6" />
@@ -112,8 +96,7 @@ export default function AboutPage() {
             Our Vision
           </h3>
           <p className="text-slate2 leading-relaxed text-base">
-            Become a trusted technology partner for businesses building the
-            future.
+            {ABOUT_CONTENT.vision}
           </p>
         </motion.div>
       </section>
@@ -129,10 +112,10 @@ export default function AboutPage() {
             className="max-w-2xl mb-12"
           >
             <span className="text-brand text-sm font-semibold tracking-wide">
-              What We Stand For
+              {ABOUT_CONTENT.valuesEyebrow}
             </span>
             <h2 className="font-display font-800 text-3xl sm:text-4xl text-ink-950 tracking-tight mt-2 leading-tight">
-              Core Values
+              {ABOUT_CONTENT.valuesTitle}
             </h2>
           </motion.div>
 
@@ -175,7 +158,7 @@ export default function AboutPage() {
       </section>
 
       {/* 5. Technology Expertise */}
-      <section className="max-w-7xl mx-auto px-5 sm:px-8 py-20">
+      <section className="about-tools max-w-7xl mx-auto px-5 sm:px-8 py-20">
         <motion.div
           initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -184,14 +167,14 @@ export default function AboutPage() {
           className="max-w-2xl mb-12"
         >
           <span className="text-brand text-sm font-semibold tracking-wide">
-            Technology Expertise
+            {ABOUT_CONTENT.toolsEyebrow}
           </span>
           <h2 className="font-display font-800 text-3xl sm:text-4xl text-ink-950 tracking-tight mt-2 leading-tight">
-            Tools We Build With
+            {ABOUT_CONTENT.toolsTitle}
           </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="about-tools-grid grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {Object.entries(TECH).map(([group, items], index) => (
             <motion.div
               key={group}
@@ -208,14 +191,13 @@ export default function AboutPage() {
               <h3 className="font-display font-700 text-base text-brand mb-4">
                 {group}
               </h3>
-              <ul className="space-y-2.5">
+              <ul className="about-tech-list">
                 {items.map((t) => (
                   <li
                     key={t}
-                    className="text-sm text-ink-950/80 flex items-center gap-2 font-medium"
+                    className="text-sm text-ink-950/80 font-medium"
                   >
-                    <Dot className="w-5 h-5 text-brand shrink-0 -ml-1" />
-                    <span>{t}</span>
+                    {t}
                   </li>
                 ))}
               </ul>

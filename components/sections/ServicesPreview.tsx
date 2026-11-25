@@ -12,7 +12,7 @@ export function ServicesPreview() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="py-24 max-w-7xl mx-auto px-5 sm:px-8">
+    <section className="home-services py-24 max-w-7xl mx-auto px-5 sm:px-8">
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 24 }}

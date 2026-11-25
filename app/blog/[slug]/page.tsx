@@ -1,180 +1,264 @@
-import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ChevronRight, ArrowLeft, Clock, Share2 } from "lucide-react";
-import { ARTICLES } from "@/lib/data";
+import {
+  ArrowLeft,
+  CheckCircle2,
+  ChevronDown,
+  ChevronRight,
+  Clock,
+  List,
+  UserRound,
+} from "lucide-react";
+import { BLOG_POSTS } from "@/lib/data";
+import type { BlogPost } from "@/lib/types";
+import { CTASection } from "@/components/sections/CTASection";
 import { ShareButtons } from "@/components/ui/ShareButtons";
-import { NewsletterForm } from "@/components/ui/NewsletterForm";
 
-interface ArticleDetailPageProps {
-  params: {
-    slug: string;
-  };
+interface BlogDetailProps {
+  params: { slug: string };
 }
 
 export function generateStaticParams() {
-  return ARTICLES.map((article) => ({
-    slug: article.slug,
-  }));
+  return BLOG_POSTS.map((post) => ({ slug: post.slug }));
 }
 
-export default function ArticleDetailPage({ params }: ArticleDetailPageProps) {
-  const article = ARTICLES.find((a) => a.slug === params.slug);
+export function generateMetadata({ params }: BlogDetailProps) {
+  const post = BLOG_POSTS.find((item) => item.slug === params.slug);
+  return post
+    ? { title: post.title, description: post.excerpt }
+    : { title: "Blog" };
+}
 
-  if (!article) {
-    notFound();
-  }
+function sectionId(heading: string) {
+  return heading
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
 
-  const relatedArticles = ARTICLES.filter((a) => a.slug !== article.slug).slice(0, 3);
+function RelatedPost({ post }: { post: BlogPost }) {
+  return (
+    <Link
+      href={`/blog/${post.slug}`}
+      className="group flex h-full flex-col rounded-2xl border border-border2 bg-white p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-brand/40 hover:shadow-lg"
+    >
+      <span className="w-fit rounded-full bg-brand-50 px-2.5 py-1 text-[11px] font-semibold text-brand">
+        {post.cat}
+      </span>
+      <h3 className="mt-4 line-clamp-2 font-display text-lg font-700 leading-snug text-ink-950 transition-colors group-hover:text-brand">
+        {post.title}
+      </h3>
+      <p className="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-slate2">
+        {post.excerpt}
+      </p>
+      <p className="mt-5 text-xs text-slate2">
+        {post.date} · {post.read} read
+      </p>
+    </Link>
+  );
+}
+
+export default function BlogDetailPage({ params }: BlogDetailProps) {
+  const post = BLOG_POSTS.find((item) => item.slug === params.slug);
+  if (!post) notFound();
+
+  const related = post.relatedSlugs
+    .map((slug) => BLOG_POSTS.find((item) => item.slug === slug))
+    .filter((item): item is BlogPost => Boolean(item));
 
   return (
-    <>
-      <article className="pt-36 pb-20 max-w-3xl mx-auto px-5 sm:px-8">
-        {/* Breadcrumb Navigation */}
-        <div className="flex items-center gap-2 text-xs sm:text-sm text-slate2 mb-6">
-          <Link href="/blog" className="hover:text-brand transition-colors flex items-center gap-1">
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Blog</span>
-          </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-slate2/60" />
-          <span className="text-slate2/80">{article.cat}</span>
-          <ChevronRight className="w-3.5 h-3.5 text-slate2/60" />
-          <span className="text-ink-950 font-medium truncate max-w-[200px]">{article.title}</span>
-        </div>
-
-        {/* Category Pill */}
-        <span className="text-xs font-semibold text-brand bg-brand-50 border border-brand-100 px-3 py-1 rounded-full">
-          {article.cat}
-        </span>
-
-        {/* Article Headline */}
-        <h1 className="font-display font-800 text-3xl sm:text-4xl lg:text-5xl text-ink-950 tracking-tight mt-4 mb-6 leading-tight">
-          {article.title}
-        </h1>
-
-        {/* Metadata Row */}
-        <div className="flex items-center gap-3 text-sm text-slate2 pb-8 border-b border-border2">
-          <div className="w-10 h-10 rounded-full bg-brand-50 text-brand font-display font-700 text-xs flex items-center justify-center border border-brand-100">
-            {article.author
-              .split(" ")
-              .map((n) => n[0])
-              .join("")}
+    <div className="article-detail-page bg-[#f4f7ff]">
+      <section className="article-detail-hero" data-detail-hero>
+        <div className="article-detail-head mx-auto max-w-[1400px] px-5 sm:px-8">
+          <div className="article-breadcrumb mb-6 flex min-w-0 items-center gap-2 text-xs text-slate2 sm:text-sm">
+            <Link
+              href="/blog"
+              className="flex shrink-0 items-center gap-1 transition-colors hover:text-brand"
+            >
+              <ArrowLeft className="h-3.5 w-3.5" />
+              Blog
+            </Link>
+            <ChevronRight className="h-3.5 w-3.5 shrink-0 text-slate2/60" />
+            <span className="shrink-0 text-slate2">{post.cat}</span>
+            <ChevronRight className="h-3.5 w-3.5 shrink-0 text-slate2/60" />
+            <span className="min-w-0 truncate font-medium text-ink-950">
+              {post.title}
+            </span>
           </div>
-          <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-            <span className="font-semibold text-ink-950">{article.author}</span>
+          <span className="inline-flex rounded-full bg-brand px-4 py-2 text-xs font-semibold text-white">
+            {post.cat}
+          </span>
+          <h1 className="article-detail-title mt-5 max-w-[820px] font-display font-800">
+            {post.title}
+          </h1>
+          <div className="article-meta mt-8 flex flex-wrap items-center gap-3 border-b border-border2 pb-8 text-sm text-slate-600">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-brand-100 bg-white font-display text-xs font-700 text-brand">
+              {post.authorInitials}
+            </div>
+            <span className="font-medium text-ink-950">{post.author}</span>
             <span>·</span>
-            <span>{article.date}</span>
+            <span>{post.authorRole}</span>
             <span>·</span>
+            <span>{post.date}</span>
             <span className="flex items-center gap-1">
-              <Clock className="w-3.5 h-3.5 text-slate2" />
-              <span>{article.read} read</span>
+              <Clock className="h-3.5 w-3.5 text-brand" />
+              {post.read} read
             </span>
           </div>
         </div>
+      </section>
 
-        {/* Cover Image Block */}
-        <div className="h-64 sm:h-80 rounded-3xl bg-gradient-to-br from-brand via-blue-600 to-indigo-600 my-10 shadow-lg relative overflow-hidden flex items-end p-8">
-          <div className="absolute inset-0 bg-black/15 pointer-events-none" />
-          <span className="relative z-10 text-white/90 text-xs sm:text-sm font-semibold bg-white/20 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
-            Engineering Insights
-          </span>
-        </div>
-
-        {/* Full Article Body */}
-        <div className="space-y-6 text-ink-950/85 leading-relaxed text-base sm:text-lg">
-          <p className="font-medium text-ink-950 text-lg sm:text-xl leading-relaxed">
-            {article.excerpt}
+      <main className="mx-auto grid max-w-[1200px] gap-12 px-5 py-14 sm:px-8 lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-12 lg:py-20">
+        <article className="min-w-0 space-y-8">
+          <p className="rounded-2xl border border-brand-100 bg-white p-6 text-[17px] leading-[1.7] text-ink-950 shadow-sm sm:p-7">
+            {post.intro}
           </p>
 
-          <h2 className="font-display font-800 text-2xl sm:text-3xl text-ink-950 pt-6 tracking-tight">
-            Where teams usually go wrong
-          </h2>
-          <p>
-            Most delays come from unclear ownership rather than technical difficulty.
-            Before writing a scope document, we ask who signs off on each decision,
-            and how quickly they can turn it around.
-          </p>
-
-          {/* Code Snippet Box */}
-          <div className="bg-ink-950 text-brand-100 rounded-2xl p-6 text-sm font-mono overflow-x-auto shadow-xl border border-white/10 my-6">
-            <pre className="text-emerald-400">
-{`function estimate(scope) {
-  return scope.clarity > 0.7
-    ? "reliable timeline"
-    : "discovery phase needed";
-}`}
-            </pre>
-          </div>
-
-          <h2 className="font-display font-800 text-2xl sm:text-3xl text-ink-950 pt-6 tracking-tight">
-            What we recommend instead
-          </h2>
-          <p>
-            Start with a two-week discovery sprint that produces a written scope,
-            an architecture outline and a fixed estimate. It costs time upfront, but
-            it removes the single biggest source of budget overruns later.
-          </p>
-
-          <p>
-            Once architecture constraints are agreed upon across stakeholders, development
-            can proceed in short, testable checkpoints with automated CI/CD feedback
-            guaranteeing predictability.
-          </p>
-        </div>
-
-        {/* Social Share Row */}
-        <div className="flex items-center justify-between gap-4 pt-10 mt-12 border-t border-border2">
-          <div className="flex items-center gap-2 text-sm font-semibold text-slate2">
-            <Share2 className="w-4 h-4" />
-            <span>Share this article:</span>
-          </div>
-          <ShareButtons />
-        </div>
-      </article>
-
-      {/* Related Articles Grid */}
-      <section className="max-w-7xl mx-auto px-5 sm:px-8 py-16 border-t border-border2">
-        <h3 className="font-display font-800 text-2xl text-ink-950 mb-8 tracking-tight">
-          Related Articles
-        </h3>
-        <div className="grid sm:grid-cols-3 gap-6">
-          {relatedArticles.map((x) => (
-            <Link
-              key={x.slug}
-              href={`/blog/${x.slug}`}
-              className="border border-border2 rounded-2xl overflow-hidden bg-white hover:border-brand/40 hover:-translate-y-1 transition-all shadow-sm group flex flex-col justify-between"
-            >
-              <div>
-                <div className="h-32 bg-gradient-to-br from-blue-100 via-brand-50 to-indigo-50 border-b border-border2/60" />
-                <div className="p-5">
-                  <span className="text-[11px] font-semibold text-brand bg-brand-50 px-2 py-0.5 rounded">
-                    {x.cat}
-                  </span>
-                  <h4 className="font-display font-700 text-base text-ink-950 mt-2 mb-2 leading-snug group-hover:text-brand transition-colors">
-                    {x.title}
-                  </h4>
+          <div className="space-y-5">
+            {post.sections.map((section) => (
+              <section
+                id={sectionId(section.heading)}
+                key={section.heading}
+                className="scroll-mt-28 rounded-xl border border-border2 bg-white p-6 shadow-sm sm:p-7"
+              >
+                <h2 className="font-display text-2xl font-800 tracking-tight text-ink-950">
+                  {section.heading}
+                </h2>
+                <div className="mt-4 space-y-4 text-sm leading-7 text-slate2 sm:text-[15px]">
+                  {section.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
                 </div>
-              </div>
-              <div className="px-5 pb-5 text-xs text-slate2">
-                <span>{x.date}</span> · <span>{x.read} read</span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+                {section.bullets && section.bullets.length > 0 && (
+                  <ul className="mt-5 space-y-3">
+                    {section.bullets.map((bullet) => (
+                      <li
+                        key={bullet}
+                        className="flex gap-3 text-sm leading-6 text-slate2"
+                      >
+                        <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-brand" />
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </section>
+            ))}
+          </div>
 
-      {/* Newsletter Signup CTA Banner */}
-      <section id="newsletter" className="max-w-4xl mx-auto px-5 sm:px-8 pb-24">
-        <div className="noise-dark rounded-3xl px-8 py-14 text-center text-white border border-white/10 shadow-xl">
-          <h3 className="font-display font-800 text-2xl sm:text-3xl mb-3 tracking-tight">
-            Get insights like this in your inbox
-          </h3>
-          <p className="text-white/60 text-sm sm:text-base mb-8 max-w-md mx-auto">
-            One concise email a month. Real engineering takeaways, unsubscribe anytime.
-          </p>
-          <NewsletterForm />
-        </div>
-      </section>
-    </>
+          {post.takeaways.length > 0 && (
+            <section className="rounded-2xl border border-brand-100 bg-brand-50 p-6 sm:p-7">
+              <p className="text-xs font-bold uppercase tracking-wider text-brand">
+                Key takeaways
+              </p>
+              <ul className="mt-4 space-y-3">
+                {post.takeaways.map((takeaway) => (
+                  <li
+                    key={takeaway}
+                    className="flex gap-3 text-sm leading-6 text-ink-950"
+                  >
+                    <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-brand" />
+                    {takeaway}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {post.tags.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {post.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-brand-100 bg-white px-3 py-1.5 text-xs font-semibold text-brand"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+
+          <div className="flex flex-wrap items-center justify-between gap-4 border-t border-border2 pt-6">
+            <span className="text-sm font-semibold text-slate2">
+              Share this article
+            </span>
+            <ShareButtons />
+          </div>
+        </article>
+
+        <aside className="space-y-6 lg:sticky lg:top-28 lg:self-start">
+          <nav
+            aria-label="In this article"
+            className="rounded-2xl border border-border2 bg-white p-5 shadow-sm"
+          >
+            <div className="flex items-center gap-2 font-display font-700 text-ink-950">
+              <List className="h-4 w-4 text-brand" />
+              In this article
+            </div>
+            <div className="mt-4 space-y-2">
+              {post.sections.map((section) => (
+                <a
+                  key={section.heading}
+                  href={`#${sectionId(section.heading)}`}
+                  className="block text-sm leading-5 text-slate2 transition-colors hover:text-brand"
+                >
+                  {section.heading}
+                </a>
+              ))}
+            </div>
+          </nav>
+          <div className="rounded-2xl border border-border2 bg-white p-5 shadow-sm">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-50 font-display text-xs font-bold text-brand">
+                {post.authorInitials}
+              </div>
+              <div>
+                <p className="font-display font-700 text-ink-950">
+                  {post.author}
+                </p>
+                <p className="text-xs text-slate2">{post.authorRole}</p>
+              </div>
+            </div>
+            <div className="mt-5 flex items-center gap-2 text-xs text-slate2">
+              <UserRound className="h-4 w-4 text-brand" />
+              Written for the WIFRIT blog
+            </div>
+          </div>
+          <div className="rounded-2xl border border-brand-100 bg-brand-50 p-5">
+            <p className="font-display font-700 text-ink-950">
+              Planning a {post.cat.toLowerCase()} initiative?
+            </p>
+            <p className="mt-2 text-sm leading-6 text-slate2">
+              Talk with our team about your product and next steps.
+            </p>
+            <Link
+              href="/contact"
+              className="mt-4 inline-flex w-full items-center justify-center rounded-lg bg-brand px-4 py-3 text-sm font-semibold text-white hover:bg-brand-700"
+            >
+              Get in touch
+            </Link>
+          </div>
+        </aside>
+      </main>
+
+      {related.length > 0 && (
+        <section className="mx-auto max-w-[1200px] px-5 pb-16 sm:px-8">
+          <h2 className="font-display text-2xl font-800 tracking-tight text-ink-950">
+            Related posts
+          </h2>
+          <div className="mt-6 grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {related.map((item) => (
+              <RelatedPost key={item.slug} post={item} />
+            ))}
+          </div>
+        </section>
+      )}
+      <CTASection
+        title="Have a project in mind?"
+        description="Let's talk about the product, platform or engineering challenge you're working through."
+        buttonText="Get in touch"
+        buttonHref="/contact"
+      />
+    </div>
   );
 }

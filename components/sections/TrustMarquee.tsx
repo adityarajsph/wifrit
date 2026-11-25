@@ -11,7 +11,7 @@ export function TrustMarquee() {
   const marqueeItems = [...TRUST_CLIENTS, ...TRUST_CLIENTS, ...TRUST_CLIENTS, ...TRUST_CLIENTS];
 
   return (
-    <section className="py-14 border-y border-border2 bg-bg2 overflow-hidden select-none">
+    <section className="home-trust py-14 border-y border-border2 bg-bg2 overflow-hidden select-none">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 mb-6">
         <p className="text-center text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate2">
           Trusted by businesses to build what&apos;s next

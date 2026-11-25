@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { ArrowRight, Check, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { SERVICE_DETAILS, FAQS } from "@/lib/data";
 import { Icon } from "@/components/ui/Icon";
 import { CTASection } from "@/components/sections/CTASection";
@@ -59,6 +59,38 @@ function FAQItem({
   );
 }
 
+const SERVICE_CATEGORIES = ["Development", "Design", "Digital Marketing"] as const;
+
+function ServiceCard({ service }: { service: (typeof SERVICE_DETAILS)[number] }) {
+  return (
+    <article className="service-tile group flex h-full flex-col rounded-2xl border border-border2 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-[0_18px_40px_-28px_rgba(37,99,235,.55)]">
+      <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl border border-brand-100 bg-brand-50 text-brand">
+        <Icon name={service.icon} className="h-5 w-5" />
+      </div>
+      <h4 className="font-display text-lg font-700 leading-snug text-ink-950">
+        {service.title}
+      </h4>
+      <p className="mt-2 text-sm leading-relaxed text-slate2">{service.desc}</p>
+      <div className="mt-4 flex flex-wrap gap-1.5">
+        {service.tech.split(", ").map((tech) => (
+          <span key={tech} className="rounded-full border border-brand-100 bg-brand-50/70 px-2.5 py-1 text-[11px] font-semibold text-brand">
+            {tech}
+          </span>
+        ))}
+      </div>
+      <p className="mt-4 rounded-xl border border-brand-100/70 bg-brand-50/50 p-3 text-xs leading-relaxed text-ink-950/80">
+        {service.benefit}
+      </p>
+      <Link
+        href={`/services/${service.slug}`}
+        className="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-semibold text-brand transition-colors hover:text-brand-700"
+      >
+        More Details <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+      </Link>
+    </article>
+  );
+}
+
 export default function ServicesPage() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const shouldReduceMotion = useReducedMotion();
@@ -70,108 +102,41 @@ export default function ServicesPage() {
   return (
     <>
       {/* 1. Page Header */}
-      <section className="relative pt-40 pb-20 grid-bg overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-white/70 to-white pointer-events-none" />
-        <div className="max-w-4xl mx-auto px-5 sm:px-8 relative text-center">
+      <section className="page-hero services-hero relative pt-40 pb-20 grid-bg overflow-hidden">
+        <div className="services-hero-wash absolute inset-0 pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 relative text-center">
           <motion.div
-            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
+            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: TRANSITION_EASE }}
+            transition={{ duration: 0.5, ease: TRANSITION_EASE }}
           >
             <span className="inline-flex items-center gap-2 text-xs font-semibold text-brand bg-brand-50 border border-brand-100 rounded-full px-4 py-1.5 mb-6">
               Services
             </span>
-            <h1 className="font-display font-800 text-4xl sm:text-5xl lg:text-6xl text-ink-950 tracking-tight leading-tight">
-              Technology Services Designed Around Your Business
+            <h1 className="font-display font-800 text-4xl sm:text-5xl lg:text-7xl text-ink-950 tracking-tight leading-tight">
+              Technology services designed <span className="text-brand">around your business</span>
             </h1>
           </motion.div>
         </div>
       </section>
 
-      {/* 2. Full Service Breakdown List (8 services) */}
-      <section className="max-w-7xl mx-auto px-5 sm:px-8 py-16 space-y-6">
-        {SERVICE_DETAILS.map((s, index) => (
-          <motion.div
-            key={s.title}
-            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{
-              duration: 0.55,
-              delay: shouldReduceMotion ? 0 : (index % 3) * 0.08,
-              ease: TRANSITION_EASE,
-            }}
-            className={`grid lg:grid-cols-12 gap-8 border border-border2 rounded-2xl p-8 sm:p-10 ${
-              index % 2 === 0 ? "bg-white" : "bg-bg2"
-            } hover:border-brand/40 transition-colors shadow-sm`}
-          >
-            {/* Column 1: Core Service Overview */}
-            <div className="lg:col-span-4 flex flex-col justify-between">
-              <div>
-                <div className="w-12 h-12 rounded-xl bg-brand-50 border border-brand-100 flex items-center justify-center text-brand mb-5">
-                  <Icon name={s.icon} className="w-6 h-6" />
-                </div>
-                <h3 className="font-display font-700 text-2xl text-ink-950 mb-3 leading-snug">
-                  {s.title}
+      {/* 2. Categorized compact service grid */}
+      <section className="services-catalog mx-auto max-w-7xl space-y-14 px-5 py-14 sm:px-8 sm:py-16">
+        {SERVICE_CATEGORIES.map((category) => {
+          const services = SERVICE_DETAILS.filter((service) => service.category === category);
+          return (
+            <section key={category} aria-labelledby={`services-${category.toLowerCase().replaceAll(" ", "-")}`}>
+              <div className="mb-6">
+                <h3 id={`services-${category.toLowerCase().replaceAll(" ", "-")}`} className="font-display text-2xl font-700 tracking-tight text-ink-950 sm:text-3xl">
+                  {category}
                 </h3>
-                <p className="text-slate2 leading-relaxed text-sm sm:text-[15px]">
-                  {s.desc}
-                </p>
               </div>
-
-              <div className="mt-6">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand hover:text-brand-700 transition-colors group"
-                >
-                  <span>Get a quote</span>
-                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-                </Link>
+              <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {services.map((service) => <ServiceCard key={service.slug} service={service} />)}
               </div>
-            </div>
-
-            {/* Column 2: Key Capabilities */}
-            <div className="lg:col-span-4 lg:border-l lg:border-border2/60 lg:pl-8">
-              <p className="text-xs font-semibold text-slate2 uppercase tracking-wider mb-4">
-                Key Capabilities
-              </p>
-              <ul className="space-y-3">
-                {s.caps.map((cap) => (
-                  <li
-                    key={cap}
-                    className="text-sm sm:text-[15px] text-ink-950/85 flex items-start gap-2.5"
-                  >
-                    <span className="mt-1 w-4 h-4 rounded-full bg-brand-50 text-brand flex items-center justify-center shrink-0">
-                      <Check className="w-3 h-3 stroke-[2.5]" />
-                    </span>
-                    <span>{cap}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Column 3: Technologies & Business Benefit */}
-            <div className="lg:col-span-4 lg:border-l lg:border-border2/60 lg:pl-8 flex flex-col justify-between">
-              <div>
-                <p className="text-xs font-semibold text-slate2 uppercase tracking-wider mb-2">
-                  Technologies
-                </p>
-                <p className="text-sm font-medium text-ink-950 mb-6 bg-slate-100/70 rounded-lg p-2.5 border border-border2/60">
-                  {s.tech}
-                </p>
-              </div>
-
-              <div>
-                <p className="text-xs font-semibold text-slate2 uppercase tracking-wider mb-2">
-                  Business Benefit
-                </p>
-                <p className="text-sm text-ink-950/85 leading-relaxed bg-brand-50/50 rounded-lg p-3 border border-brand-100/60">
-                  {s.benefit}
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        ))}
+            </section>
+          );
+        })}
       </section>
 
       {/* 3. Framer Motion FAQ Accordion */}

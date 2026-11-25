@@ -11,6 +11,7 @@ interface CTASectionProps {
   description?: string;
   buttonText?: string;
   buttonHref?: string;
+  supportingText?: string;
 }
 
 export function CTASection({
@@ -18,11 +19,12 @@ export function CTASection({
   description = "Tell us what you're building and we'll help turn your idea into a scalable digital product.",
   buttonText = "Let's Talk",
   buttonHref = "/contact",
+  supportingText,
 }: CTASectionProps) {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="max-w-7xl mx-auto px-5 sm:px-8 pb-24">
+    <section className="mx-auto w-full max-w-[1280px] px-6 pb-24 sm:px-8 lg:px-12">
       <motion.div
         initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 28 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -57,6 +59,7 @@ export function CTASection({
               <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>
+          {supportingText && <p className="mt-4 text-sm text-white/55">{supportingText}</p>}
         </div>
       </motion.div>
     </section>

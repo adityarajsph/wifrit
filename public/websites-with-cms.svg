@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="680" viewBox="0 0 900 680" fill="none">
+  <title>Website with CMS – WIFRIT</title>
+  <desc>Transparent isometric vector illustration of a website browser, content management dashboard, cloud publishing, editable media cards and database in a blue and cyan palette.</desc>
+  <defs>
+    <linearGradient id="blue" x1="190" y1="130" x2="700" y2="560" gradientUnits="userSpaceOnUse"><stop stop-color="#60A5FA"/><stop offset=".52" stop-color="#2563EB"/><stop offset="1" stop-color="#1D4ED8"/></linearGradient>
+    <linearGradient id="deep" x1="280" y1="160" x2="710" y2="560" gradientUnits="userSpaceOnUse"><stop stop-color="#315FCE"/><stop offset="1" stop-color="#142B70"/></linearGradient>
+    <linearGradient id="cyan" x1="400" y1="180" x2="650" y2="430" gradientUnits="userSpaceOnUse"><stop stop-color="#A5F3FC"/><stop offset="1" stop-color="#06B6D4"/></linearGradient>
+    <linearGradient id="screen" x1="270" y1="180" x2="640" y2="480" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#EAF3FF"/></linearGradient>
+    <linearGradient id="panel" x1="610" y1="300" x2="790" y2="540" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#DCEBFF"/></linearGradient>
+    <linearGradient id="purple" x1="180" y1="270" x2="290" y2="380" gradientUnits="userSpaceOnUse"><stop stop-color="#A78BFA"/><stop offset="1" stop-color="#6366F1"/></linearGradient>
+    <filter id="shadow" x="80" y="70" width="760" height="570" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feGaussianBlur stdDeviation="13"/></filter>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
+  </defs>
+
+  <!-- soft floating shadows only; canvas remains transparent -->
+  <ellipse cx="470" cy="570" rx="330" ry="42" fill="#2563EB" opacity=".13" filter="url(#shadow)"/>
+
+  <!-- orbit / publishing flow -->
+  <path d="M170 245C210 95 390 54 565 91C714 122 804 226 794 359" stroke="#93C5FD" stroke-width="3" stroke-dasharray="7 12" opacity=".75"/>
+  <circle cx="170" cy="245" r="6" fill="#38BDF8"/><circle cx="794" cy="359" r="6" fill="#38BDF8"/>
+
+  <!-- cloud publish icon -->
+  <g transform="translate(615 42)">
+    <path d="M48 104H158C185 104 203 86 203 63C203 41 185 24 163 24C157 -1 135 -17 109 -17C81 -17 59 2 55 29C28 26 7 45 7 69C7 89 24 104 48 104Z" fill="#BFDBFE" opacity=".55" transform="translate(0 9)"/>
+    <path d="M48 96H158C185 96 203 78 203 55C203 33 185 16 163 16C157 -9 135 -25 109 -25C81 -25 59 -6 55 21C28 18 7 37 7 61C7 81 24 96 48 96Z" fill="url(#blue)" stroke="#1D4ED8" stroke-width="3"/>
+    <path d="M106 69V30M89 47L106 30L123 47" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M35 104H166" stroke="#93C5FD" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+  </g>
+
+  <!-- small CMS platform tiles -->
+  <g transform="translate(85 175)">
+    <path d="M10 32L73 0L136 32L73 65L10 32Z" fill="#BFDBFE"/>
+    <path d="M10 32L73 65V139L10 106V32Z" fill="url(#blue)"/>
+    <path d="M73 65L136 32V106L73 139V65Z" fill="#1D4ED8"/>
+    <circle cx="73" cy="64" r="27" fill="white" opacity=".95"/>
+    <path d="M62 49H84V57H70V64H81V72H70V81H62V49Z" fill="#2563EB"/>
+  </g>
+  <g transform="translate(105 350)">
+    <path d="M0 25L54 0L108 25L54 52L0 25Z" fill="#DBEAFE"/>
+    <path d="M0 25L54 52V112L0 85V25Z" fill="#0EA5E9"/>
+    <path d="M54 52L108 25V85L54 112V52Z" fill="#0369A1"/>
+    <path d="M34 37L54 27L74 37V60L54 70L34 60V37Z" fill="white" opacity=".95"/>
+    <path d="M43 43H65M43 50H65M43 57H58" stroke="#0284C7" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- browser base / monitor stand -->
+  <path d="M310 478L555 538L683 470L438 409L310 478Z" fill="#BFDBFE" opacity=".65"/>
+  <path d="M440 472L528 494L528 535L440 513V472Z" fill="#2563EB"/>
+  <path d="M528 494L592 462V504L528 535V494Z" fill="#1E40AF"/>
+  <path d="M388 532L570 577L650 536L468 491L388 532Z" fill="url(#blue)"/>
+  <path d="M388 532L468 551L650 536L570 577L388 532Z" fill="#1E40AF" opacity=".5"/>
+
+  <!-- main website browser -->
+  <g>
+    <path d="M246 155Q246 130 271 130H641Q667 130 667 156V438Q667 461 644 461H274Q246 461 246 435V155Z" fill="#1E3A8A" opacity=".18" transform="translate(8 12)"/>
+    <path d="M230 148Q230 122 256 122H630Q656 122 656 148V424Q656 450 630 450H256Q230 450 230 424V148Z" fill="url(#deep)" stroke="#1D4ED8" stroke-width="4"/>
+    <path d="M246 166Q246 148 264 148H622Q640 148 640 166V411H246V166Z" fill="url(#screen)"/>
+    <!-- browser top bar -->
+    <path d="M246 166Q246 148 264 148H622Q640 148 640 166V195H246V166Z" fill="#DBEAFE"/>
+    <circle cx="268" cy="171" r="6" fill="#F87171"/><circle cx="289" cy="171" r="6" fill="#FBBF24"/><circle cx="310" cy="171" r="6" fill="#34D399"/>
+    <rect x="370" y="161" width="174" height="19" rx="9.5" fill="white"/>
+    <circle cx="386" cy="170.5" r="4" stroke="#60A5FA" stroke-width="2"/>
+    <path d="M389 174L393 178" stroke="#60A5FA" stroke-width="2" stroke-linecap="round"/>
+    <path d="M404 170H520" stroke="#94A3B8" stroke-width="3" stroke-linecap="round"/>
+    <!-- site nav -->
+    <path d="M266 213H620" stroke="#DBEAFE" stroke-width="2"/>
+    <rect x="267" y="207" width="66" height="17" rx="5" fill="#2563EB"/>
+    <path d="M360 215H395M415 215H450M470 215H505M525 215H584" stroke="#93C5FD" stroke-width="5" stroke-linecap="round"/>
+    <!-- hero image / content -->
+    <rect x="266" y="238" width="207" height="112" rx="10" fill="#BFDBFE"/>
+    <path d="M266 326L325 274L360 302L397 264L473 333V350H266V326Z" fill="url(#blue)"/>
+    <circle cx="423" cy="265" r="13" fill="#FCD34D"/>
+    <rect x="489" y="242" width="128" height="12" rx="6" fill="#64748B" opacity=".7"/>
+    <rect x="489" y="264" width="111" height="8" rx="4" fill="#CBD5E1"/>
+    <rect x="489" y="281" width="119" height="8" rx="4" fill="#CBD5E1"/>
+    <rect x="489" y="298" width="91" height="8" rx="4" fill="#CBD5E1"/>
+    <rect x="489" y="319" width="83" height="23" rx="11.5" fill="#2563EB"/>
+    <path d="M509 330H554" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    <!-- content cards -->
+    <rect x="266" y="366" width="105" height="31" rx="6" fill="white" stroke="#DBEAFE"/>
+    <rect x="278" y="375" width="28" height="14" rx="3" fill="#93C5FD"/>
+    <path d="M315 378H357M315 386H347" stroke="#94A3B8" stroke-width="3" stroke-linecap="round"/>
+    <rect x="383" y="366" width="105" height="31" rx="6" fill="white" stroke="#DBEAFE"/>
+    <rect x="395" y="375" width="28" height="14" rx="3" fill="#A5F3FC"/>
+    <path d="M432 378H474M432 386H464" stroke="#94A3B8" stroke-width="3" stroke-linecap="round"/>
+    <rect x="500" y="366" width="117" height="31" rx="6" fill="white" stroke="#DBEAFE"/>
+    <rect x="512" y="375" width="28" height="14" rx="3" fill="#C4B5FD"/>
+    <path d="M549 378H604M549 386H590" stroke="#94A3B8" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- floating CMS admin panel -->
+  <g>
+    <path d="M618 278L766 315V529L618 492V278Z" fill="#1E40AF" opacity=".2" transform="translate(8 9)"/>
+    <path d="M603 267L755 305V515L603 477V267Z" fill="url(#blue)" stroke="#1D4ED8" stroke-width="3"/>
+    <path d="M617 286L741 317V495L617 464V286Z" fill="url(#panel)"/>
+    <path d="M617 286L741 317V352L617 321V286Z" fill="#1D4ED8"/>
+    <path d="M630 303L642 306L642 318L630 315V303Z" fill="white"/>
+    <path d="M651 309L719 326" stroke="white" stroke-width="5" stroke-linecap="round"/>
+    <!-- panel rows -->
+    <g fill="#2563EB">
+      <path d="M632 344L647 348L647 363L632 359V344Z"/><path d="M632 382L647 386L647 401L632 397V382Z"/><path d="M632 420L647 424L647 439L632 435V420Z"/><path d="M632 458L647 462L647 477L632 473V458Z"/>
+    </g>
+    <g stroke="#2563EB" stroke-width="4" stroke-linecap="round" opacity=".8">
+      <path d="M659 354L718 369M659 364L704 375"/><path d="M659 392L718 407M659 402L704 413"/><path d="M659 430L718 445M659 440L704 451"/><path d="M659 468L718 483"/>
+    </g>
+    <circle cx="724" cy="352" r="5" fill="#10B981"/><circle cx="724" cy="390" r="5" fill="#10B981"/><circle cx="724" cy="428" r="5" fill="#10B981"/>
+  </g>
+
+  <!-- database stack -->
+  <g transform="translate(735 462)">
+    <ellipse cx="47" cy="17" rx="47" ry="17" fill="#93C5FD"/>
+    <path d="M0 17V91C0 101 21 109 47 109S94 101 94 91V17" fill="url(#blue)"/>
+    <path d="M0 43C0 53 21 61 47 61S94 53 94 43M0 68C0 78 21 86 47 86S94 78 94 68" stroke="#BFDBFE" stroke-width="3" opacity=".9"/>
+    <ellipse cx="47" cy="17" rx="47" ry="17" fill="#60A5FA" stroke="#1D4ED8" stroke-width="3"/>
+    <ellipse cx="47" cy="17" rx="25" ry="7" fill="#DBEAFE" opacity=".6"/>
+  </g>
+
+  <!-- content block / media asset tile -->
+  <g transform="translate(85 492)">
+    <path d="M0 24L75 0L150 24L75 51L0 24Z" fill="#DBEAFE"/>
+    <path d="M0 24L75 51V113L0 86V24Z" fill="#2563EB"/>
+    <path d="M75 51L150 24V86L75 113V51Z" fill="#1E40AF"/>
+    <rect x="40" y="29" width="58" height="35" rx="5" transform="skewY(19)" fill="white" opacity=".95"/>
+    <path d="M49 54L62 42L72 50L84 38L96 58" stroke="#38BDF8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- gear / settings -->
+  <g transform="translate(218 470)">
+    <path d="M37 0L53 0L58 15L72 21L86 14L98 26L91 40L97 54L112 60L112 76L97 82L91 96L98 110L86 122L72 115L58 121L53 136H37L32 121L18 115L4 122L-8 110L-1 96L-7 82L-22 76V60L-7 54L-1 40L-8 26L4 14L18 21L32 15L37 0Z" fill="url(#blue)" stroke="#1D4ED8" stroke-width="3" transform="translate(20 -8) scale(.78)"/>
+    <circle cx="63" cy="52" r="24" fill="#DBEAFE"/>
+    <circle cx="63" cy="52" r="13" fill="#2563EB"/>
+  </g>
+
+  <!-- edit / pencil icon -->
+  <g transform="translate(490 78) rotate(24)">
+    <rect x="0" y="0" width="20" height="82" rx="9" fill="url(#cyan)" stroke="#0E7490" stroke-width="2"/>
+    <path d="M0 10L20 10" stroke="white" stroke-width="3" opacity=".8"/>
+    <path d="M0 82L10 101L20 82" fill="#1D4ED8"/>
+    <path d="M7 94L10 101L13 94" fill="#0F172A"/>
+  </g>
+
+  <!-- cursor pointer -->
+  <path d="M570 420L570 468L583 456L594 478L606 472L595 450L615 448L570 420Z" fill="#1D4ED8" stroke="white" stroke-width="3" stroke-linejoin="round"/>
+
+  <!-- decorative sparkles -->
+  <path d="M770 185V211M757 198H783" stroke="#38BDF8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M190 110V130M180 120H200" stroke="#60A5FA" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="700" cy="220" r="5" fill="#A78BFA"/><circle cx="560" cy="92" r="4" fill="#38BDF8"/><circle cx="820" cy="430" r="5" fill="#60A5FA"/>
+</svg>

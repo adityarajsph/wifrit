@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" fill="none">
+  <defs>
+    <linearGradient id="bgGlow" x1="190" y1="140" x2="1000" y2="790" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C3AED" stop-opacity=".32"/><stop offset=".52" stop-color="#168BFF" stop-opacity=".24"/><stop offset="1" stop-color="#00D5FF" stop-opacity=".18"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="330" y1="230" x2="830" y2="770" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#67D7FF"/><stop offset=".35" stop-color="#247BFF"/><stop offset="1" stop-color="#123BCB"/>
+    </linearGradient>
+    <linearGradient id="deep" x1="460" y1="370" x2="760" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#244FEA"/><stop offset="1" stop-color="#071B78"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="410" y1="310" x2="810" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#D8E7FF"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="760" y1="170" x2="950" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8AF4FF"/><stop offset="1" stop-color="#16A9FF"/>
+    </linearGradient>
+    <linearGradient id="violet" x1="180" y1="250" x2="370" y2="440" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D78BFF"/><stop offset="1" stop-color="#743BEE"/>
+    </linearGradient>
+    <filter id="shadow" x="90" y="60" width="1030" height="820" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="20"/>
+    </filter>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+    <filter id="drop" x="-30%" y="-30%" width="160%" height="170%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10" result="b"/>
+      <feOffset dy="14"/><feComponentTransfer><feFuncA type="linear" slope=".28"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- ambient dimensional glow -->
+  <ellipse cx="600" cy="500" rx="470" ry="330" fill="url(#bgGlow)" filter="url(#soft)"/>
+  <ellipse cx="600" cy="770" rx="390" ry="54" fill="#145BFF" opacity=".23" filter="url(#shadow)"/>
+
+  <!-- floating SEO keyword tiles -->
+  <g filter="url(#drop)" transform="rotate(-10 272 312)">
+    <rect x="166" y="244" width="210" height="128" rx="28" fill="url(#violet)" stroke="#E6C7FF" stroke-opacity=".8" stroke-width="3"/>
+    <circle cx="211" cy="288" r="16" fill="white" fill-opacity=".95"/>
+    <path d="M197 327c0-16 10-27 24-27s24 11 24 27v8h-48v-8Z" fill="white" fill-opacity=".95"/>
+    <rect x="253" y="278" width="91" height="12" rx="6" fill="white"/>
+    <rect x="253" y="302" width="70" height="10" rx="5" fill="#E8D8FF"/>
+    <rect x="253" y="324" width="83" height="10" rx="5" fill="#E8D8FF"/>
+  </g>
+  <g filter="url(#drop)" transform="rotate(8 925 286)">
+    <rect x="831" y="220" width="202" height="120" rx="26" fill="url(#cyan)" stroke="#D6FCFF" stroke-width="3"/>
+    <path d="M867 285l24-24 23 17 39-43" stroke="#0752D9" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M936 235h18v18" stroke="#0752D9" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="865" y="305" width="132" height="9" rx="4.5" fill="white" fill-opacity=".8"/>
+  </g>
+
+  <!-- link network motif -->
+  <g stroke="#75DFFF" stroke-width="5" stroke-linecap="round" opacity=".8">
+    <path d="M325 520L410 450L490 500L560 420"/>
+    <path d="M790 245L740 180L660 210L620 150"/>
+  </g>
+  <g fill="#E9FBFF" stroke="#2D9EFF" stroke-width="5">
+    <circle cx="325" cy="520" r="12"/><circle cx="410" cy="450" r="12"/><circle cx="490" cy="500" r="12"/><circle cx="560" cy="420" r="12"/>
+    <circle cx="790" cy="245" r="12"/><circle cx="740" cy="180" r="12"/><circle cx="660" cy="210" r="12"/><circle cx="620" cy="150" r="12"/>
+  </g>
+
+  <!-- main floating search analytics panel -->
+  <g filter="url(#drop)">
+    <path d="M360 300Q360 270 391 270H805Q837 270 837 302V653Q837 683 807 683H392Q360 683 360 651V300Z" fill="url(#deep)" stroke="#7BBEFF" stroke-width="5"/>
+    <path d="M383 307Q383 293 399 293H798Q814 293 814 309V638Q814 654 798 654H399Q383 654 383 638V307Z" fill="url(#screen)"/>
+    <path d="M383 310Q383 293 400 293H798Q814 293 814 310V338H383V310Z" fill="#1458E8"/>
+    <circle cx="410" cy="315" r="6" fill="#BDEAFF"/><circle cx="433" cy="315" r="6" fill="#BDEAFF" opacity=".8"/><circle cx="456" cy="315" r="6" fill="#BDEAFF" opacity=".65"/>
+    <rect x="413" y="366" width="370" height="48" rx="15" fill="white" stroke="#C8D9F8" stroke-width="2"/>
+    <circle cx="442" cy="390" r="10" stroke="#2377F5" stroke-width="5"/>
+    <path d="M450 398l12 12" stroke="#2377F5" stroke-width="5" stroke-linecap="round"/>
+    <rect x="478" y="382" width="170" height="14" rx="7" fill="#B5C8E8"/>
+    <rect x="665" y="380" width="95" height="21" rx="10" fill="#DDEAFF"/>
+    <rect x="413" y="438" width="220" height="178" rx="18" fill="#EFF5FF" stroke="#D2E1F8" stroke-width="2"/>
+    <text x="435" y="470" fill="#31517E" font-family="Arial,sans-serif" font-size="17" font-weight="700">ORGANIC TRAFFIC</text>
+    <path d="M439 577V500M439 577H607" stroke="#A8BFDF" stroke-width="3" stroke-linecap="round"/>
+    <rect x="455" y="543" width="22" height="34" rx="6" fill="#6BBFFF"/>
+    <rect x="489" y="526" width="22" height="51" rx="6" fill="#4EA8FF"/>
+    <rect x="523" y="510" width="22" height="67" rx="6" fill="#328BFF"/>
+    <rect x="557" y="488" width="22" height="89" rx="6" fill="#1766F2"/>
+    <path d="M455 526L500 507L533 514L584 480" stroke="#0D53D9" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M571 480H584V493" stroke="#0D53D9" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="651" y="438" width="132" height="178" rx="18" fill="#F4F8FF" stroke="#D2E1F8" stroke-width="2"/>
+    <circle cx="717" cy="500" r="38" stroke="#D6E6FF" stroke-width="17"/>
+    <path d="M717 462A38 38 0 0 1 751 516" stroke="#1674F5" stroke-width="17" stroke-linecap="round"/>
+    <path d="M717 462A38 38 0 0 0 680 508" stroke="#45C7F5" stroke-width="17" stroke-linecap="round"/>
+    <rect x="674" y="558" width="76" height="9" rx="4.5" fill="#B5C9EA"/>
+    <rect x="674" y="578" width="58" height="9" rx="4.5" fill="#D0DDF2"/>
+  </g>
+
+  <!-- oversized magnifying glass, deliberately distinct from reference -->
+  <g filter="url(#drop)" transform="rotate(-22 290 620)">
+    <path d="M331 656L410 740" stroke="#0B3DC2" stroke-width="43" stroke-linecap="round"/>
+    <path d="M331 656L410 740" stroke="url(#blue)" stroke-width="31" stroke-linecap="round"/>
+    <circle cx="264" cy="580" r="105" fill="url(#blue)" stroke="#9BDFFF" stroke-width="5"/>
+    <circle cx="264" cy="580" r="78" fill="#EAF6FF" stroke="#0C55D9" stroke-width="12"/>
+    <circle cx="264" cy="580" r="53" fill="#D4E8FF"/>
+    <path d="M230 589L254 565L274 580L307 542" stroke="#155DE8" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M290 542H307V559" stroke="#155DE8" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- ranking badge -->
+  <g filter="url(#drop)" transform="rotate(-7 790 740)">
+    <rect x="700" y="690" width="238" height="94" rx="27" fill="url(#blue)" stroke="#A7E7FF" stroke-width="4"/>
+    <path d="M736 748L756 728L777 740L811 707" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M793 707H811V725" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="829" y="749" fill="white" font-family="Arial,sans-serif" font-size="29" font-weight="800" text-anchor="middle">TOP 10</text>
+  </g>
+
+  <!-- small keyword chips -->
+  <g filter="url(#drop)">
+    <rect x="132" y="690" width="190" height="62" rx="20" fill="#F4F8FF" stroke="#A8D9FF" stroke-width="3"/>
+    <text x="227" y="729" text-anchor="middle" fill="#1556CE" font-family="Arial,sans-serif" font-size="23" font-weight="700">KEYWORDS</text>
+    <rect x="892" y="455" width="174" height="58" rx="18" fill="#F5FBFF" stroke="#A8E8FF" stroke-width="3"/>
+    <text x="979" y="492" text-anchor="middle" fill="#1260D8" font-family="Arial,sans-serif" font-size="21" font-weight="700">BACKLINKS</text>
+  </g>
+
+  <!-- sparkle accents -->
+  <g fill="#C7F7FF">
+    <path d="M1000 135l10 28 28 10-28 10-10 28-10-28-28-10 28-10 10-28Z"/>
+    <path d="M270 130l7 19 19 7-19 7-7 19-7-19-19-7 19-7 7-19Z" opacity=".8"/>
+    <circle cx="935" cy="625" r="8"/><circle cx="350" cy="205" r="7"/><circle cx="585" cy="745" r="6"/>
+  </g>
+</svg>

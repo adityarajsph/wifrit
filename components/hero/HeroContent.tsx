@@ -11,13 +11,13 @@ export function HeroContent() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="flex flex-col items-start text-left w-full max-w-xl lg:max-w-2xl">
+    <div className="home-hero-copy flex flex-col items-start text-left w-full max-w-xl lg:max-w-2xl">
       {/* 1. Refined Status Eyebrow Badge */}
       <motion.div
         initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, ease: TRANSITION_EASE }}
-        className="inline-flex items-center gap-2 text-xs font-semibold text-brand bg-brand-50/90 border border-brand-200/80 rounded-full px-3.5 py-1.5 mb-5 sm:mb-6 shadow-xs backdrop-blur-sm"
+        className="home-hero-eyebrow inline-flex items-center gap-2 text-xs font-semibold text-brand bg-brand-50/90 border border-brand-200/80 rounded-full px-3.5 py-1.5 mb-5 sm:mb-6 shadow-xs backdrop-blur-sm"
       >
         <span className="relative flex h-2 w-2">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -33,13 +33,13 @@ export function HeroContent() {
         initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.65, delay: 0.08, ease: TRANSITION_EASE }}
-        className="font-display font-800 text-3xl sm:text-5xl lg:text-5xl xl:text-[3.75rem] leading-[1.12] tracking-tight mb-5 sm:mb-6 text-ink-950"
+        className="home-hero-title font-display font-800 text-3xl sm:text-5xl lg:text-5xl xl:text-[3.75rem] leading-[1.12] tracking-[20px] mb-5 sm:mb-6 text-ink-950"
       >
-        Engineering{" "}
-        <span className="bg-gradient-to-r from-brand via-blue-600 to-indigo-600 bg-clip-text text-transparent inline-block">
-          Digital Products
+          We engineer software{" "}
+        <span className="home-hero-muted bg-gradient-to-r from-brand via-blue-600 to-indigo-600 bg-clip-text text-transparent inline-block">
+          that moves business
         </span>{" "}
-        That Move Markets.
+        <span className="home-hero-forward">forward.</span>
       </motion.h1>
 
       {/* 3. Subheadline Paragraph */}
@@ -53,9 +53,7 @@ export function HeroContent() {
         }}
         className="text-base sm:text-lg lg:text-xl text-slate2 leading-relaxed mb-7 sm:mb-8 max-w-xl font-normal"
       >
-        WIFRIT designs and builds scalable web applications, mobile platforms,
-        and enterprise cloud systems. We turn ambitious technical challenges into
-        flawless digital experiences.
+        WIFRIT partners with ambitious teams to design, build and scale reliable digital products — from customer-facing platforms to the systems that run your business.
       </motion.p>
 
       {/* 4. Call to Action Buttons */}
@@ -67,7 +65,7 @@ export function HeroContent() {
           delay: shouldReduceMotion ? 0 : 0.28,
           ease: TRANSITION_EASE,
         }}
-        className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 mb-8 sm:mb-10 w-full sm:w-auto"
+        className="home-hero-actions flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 mb-8 sm:mb-10 w-full sm:w-auto"
       >
         {/* Primary CTA */}
         <MagneticButton href="/contact" className="w-full sm:w-auto">
@@ -100,7 +98,7 @@ export function HeroContent() {
           duration: 0.6,
           delay: shouldReduceMotion ? 0 : 0.38,
         }}
-        className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 pt-5 border-t border-slate-200/90 w-full"
+        className="home-hero-proof flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 pt-5 border-t border-slate-200/90 w-full"
       >
         {/* Social Proof */}
         <div className="flex items-center gap-3">

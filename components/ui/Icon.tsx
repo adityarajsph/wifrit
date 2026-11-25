@@ -44,6 +44,7 @@ import {
   X,
   Check,
   AlertCircle,
+  Fingerprint,
   LucideProps,
 } from "lucide-react";
 
@@ -93,6 +94,7 @@ const ICON_MAP: Record<string, React.ComponentType<LucideProps>> = {
   x: X,
   check: Check,
   "alert-circle": AlertCircle,
+  fingerprint: Fingerprint,
 };
 
 interface IconProps extends LucideProps {

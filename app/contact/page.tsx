@@ -10,11 +10,11 @@ export default function ContactPage() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <>
+    <div className="contact-page">
       {/* 1. Page Header */}
-      <section className="relative pt-40 pb-16 grid-bg overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-white/70 to-white pointer-events-none" />
-        <div className="max-w-4xl mx-auto px-5 sm:px-8 relative text-center">
+      <section className="contact-hero relative overflow-hidden">
+        <div className="contact-hero-wash absolute inset-0 pointer-events-none" />
+        <div className="max-w-6xl mx-auto px-5 sm:px-8 relative text-center">
           <motion.div
             initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -23,8 +23,8 @@ export default function ContactPage() {
             <span className="inline-flex items-center gap-2 text-xs font-semibold text-brand bg-brand-50 border border-brand-100 rounded-full px-4 py-1.5 mb-6">
               Contact
             </span>
-            <h1 className="font-display font-800 text-4xl sm:text-5xl lg:text-6xl text-ink-950 tracking-tight leading-tight mb-4">
-              Let&apos;s Build What&apos;s Next
+            <h1 className="font-display font-700 text-ink-950 tracking-tight leading-tight mb-4">
+              Let&apos;s Build <span className="contact-hero-accent">What&apos;s Next</span>
             </h1>
             <p className="text-slate2 text-base sm:text-lg max-w-xl mx-auto">
               Have a project, idea, or challenge? Talk to our team.
@@ -34,14 +34,20 @@ export default function ContactPage() {
       </section>
 
       {/* 2. Contact Information & Interactive Form */}
-      <section className="max-w-6xl mx-auto px-5 sm:px-8 pb-24 grid lg:grid-cols-5 gap-12 items-start">
+      <section className="contact-content max-w-7xl mx-auto px-5 sm:px-8 pb-24">
+        <div className="contact-main-card">
         {/* Left Column: Direct Info */}
         <motion.div
           initial={{ opacity: 0, x: shouldReduceMotion ? 0 : -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease: TRANSITION_EASE }}
-          className="lg:col-span-2 space-y-7"
+          className="contact-info space-y-7"
         >
+          <div className="!border-0 !pb-0">
+            <p className="text-xs font-bold uppercase tracking-[.14em] text-brand">Start a conversation</p>
+            <h2 className="mt-2 font-display font-700 text-ink-950">Get in touch</h2>
+            <p className="mt-3 text-sm leading-relaxed text-slate2">Tell us what you are building and we&apos;ll help shape the right next step.</p>
+          </div>
           <div className="flex gap-4 items-start">
             <div className="w-11 h-11 shrink-0 rounded-xl bg-brand-50 border border-brand-100 flex items-center justify-center text-brand shadow-sm">
               <Mail className="w-5 h-5" />
@@ -135,11 +141,12 @@ export default function ContactPage() {
           initial={{ opacity: 0, x: shouldReduceMotion ? 0 : 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: TRANSITION_EASE }}
-          className="lg:col-span-3"
+          className="contact-form-column"
         >
           <ContactForm />
         </motion.div>
+        </div>
       </section>
-    </>
+    </div>
   );
 }
